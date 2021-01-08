@@ -54,13 +54,17 @@ module.exports.getSpecificCarType = async (req, res) => {
 
 /**
  * Used to add a drive and its rawData to a specific carType from the DB.
- * Request has to contain an id param.
+ * Request has to contain an id param and driveId.
  * 
  * @respond success or failure message
  */
 module.exports.addDriveToSpecificCarType = (req, res) => {
-    
+    try{
+        if(!req.driveId) throw new Error('Request must contain driveId');
+        await carTypeService.addDriveToSpecificCarType(validateAndReturnParam(req), req.driveId);
+        res.status(200).json({message: SUCCESS_MESSAGES.POST('Drive')})
 
+    } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.POST(MODEL_NAME), error }); }
 };
 
 /**
