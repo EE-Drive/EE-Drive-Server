@@ -59,7 +59,8 @@ module.exports.getSpecificCarType = async (req, res) => {
  * @respond success or failure message
  */
 module.exports.addDriveToSpecificCarType = (req, res) => {
-    // TODO: look for best practice to call drive service from carType controller 
+    
+
 };
 
 /**
@@ -70,7 +71,7 @@ module.exports.addDriveToSpecificCarType = (req, res) => {
  */
 module.exports.deleteSpecificCarType = async (req, res) => {
     try{
-        await carTypeService.deleteSpecificCarType(validateParam(req));
+        await carTypeService.deleteSpecificCarType(validateAndReturnParam(req));
         
         res.status(200).json({ message: SUCCESS_MESSAGES.DELETE(MODEL_NAME) });
 
