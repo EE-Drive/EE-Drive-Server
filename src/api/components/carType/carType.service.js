@@ -11,7 +11,7 @@ module.exports.getCarTypes = () => {
         CarTypeModel
             .find()
             .then(resolve)
-            .catch(reject)
+            .catch(reject);
     });
 };
 
@@ -26,7 +26,7 @@ module.exports.addCarType = ({companyName, brandName, year}) => {
         new CarTypeModel({companyName, brandName, year})
             .save()
             .then(() => resolve(true))
-            .catch(reject)
+            .catch(reject);
     });
 };
 
@@ -41,7 +41,23 @@ module.exports.getSpecificCarType = carTypeId => {
         CarTypeModel
             .findById(carTypeId)
             .then(resolve)
-            .catch(reject)
+            .catch(reject);
+    });
+};
+
+/**
+ * Used to add a drive to a specific car type
+ * 
+ * @param {String} carTypeId 
+ * @param {String} driveId 
+ * @resolve the updated car type
+ */
+module.exports.addDriveToSpecificCarType = (carTypeId, driveId) => {
+    return new Promise((resolve, reject) => {
+        CarTypeModel
+            .findByIdAndUpdate(carTypeId, { $push:{ drivesID: driveId } })
+            .then(resolve)
+            .catch(reject);
     });
 };
 

@@ -7,7 +7,7 @@
  */
 module.exports.validateAndReturnParam = req => {
     if(!req.params.id)
-        throw new Error('An id param is missing in the request');
+        throw new Error('An id param is missing');
      
     return req.params.id;
 }
