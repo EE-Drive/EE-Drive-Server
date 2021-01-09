@@ -19,13 +19,13 @@ module.exports.getCarTypes = () => {
  * Used to insert a cartType to the DB
  * 
  * @param {object} newCarType object contains the carType companyName, brandName and year
- * @resolve true if successful
+ * @resolve the created car type
  */
 module.exports.addCarType = ({companyName, brandName, year}) => {
     return new Promise((resolve, reject) => {
         new CarTypeModel({companyName, brandName, year})
             .save()
-            .then(() => resolve(true))
+            .then(resolve)
             .catch(reject);
     });
 };
@@ -33,7 +33,7 @@ module.exports.addCarType = ({companyName, brandName, year}) => {
 /**
  * Used to fetch a specific carType from the DB.
  * 
- * @param {String} carTypeId 
+ * @param {string} carTypeId 
  * @resolve requested carType data
  */
 module.exports.getSpecificCarType = carTypeId => {
@@ -46,10 +46,26 @@ module.exports.getSpecificCarType = carTypeId => {
 };
 
 /**
+ * Used to updated an existing carType
+ * 
+ * @param {string} carTypeId 
+ * @param {object} change 
+ * @resolve car type before the update
+ */
+module.exports.updateCarType = async (carTypeId, change) => {
+    return new Promise((resolve, reject) => {
+        CarTypeModel
+            .findByIdAndUpdate(carTypeId, { $set:change })
+            .then(resolve)
+            .catch((reject));
+    });
+};
+
+/**
  * Used to add a drive to a specific car type
  * 
- * @param {String} carTypeId 
- * @param {String} driveId 
+ * @param {string} carTypeId 
+ * @param {string} driveId 
  * @resolve the updated car type
  */
 module.exports.addDriveToSpecificCarType = (carTypeId, driveId) => {
@@ -64,14 +80,14 @@ module.exports.addDriveToSpecificCarType = (carTypeId, driveId) => {
 /**
  * Used to delete a specific car type from the DB.
  * 
- * @param {*} carTypeId 
- * @resolve true if successful
+ * @param {string} carTypeId 
+ * @resolve the deleted car type
  */
 module.exports.deleteSpecificCarType = carTypeId => {
     return new Promise((resolve, reject) => {
         CarTypeModel
             .findByIdAndDelete(carTypeId)
-            .then(() => resolve(true))
+            .then(resolve)
             .catch(reject);
     });
 };

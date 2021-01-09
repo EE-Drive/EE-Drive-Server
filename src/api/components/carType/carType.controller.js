@@ -7,7 +7,7 @@ const MODEL_NAME = 'Car Type';
 /**
  * Used to receive all carTypes from the DB
  * 
- * @respond json with the carTypes or failure message
+ * @respond carTypes array
  */
 module.exports.getCarTypes = async (req, res) => {
     try {
@@ -22,7 +22,7 @@ module.exports.getCarTypes = async (req, res) => {
  * Used to add a new carType to the DB.
  * Req body must contain carType companyName, brandName and a year
  * 
- * @respond success or failure message
+ * @respond added carType id 
  */
 module.exports.addCarType = async (req, res) => {
     try {
@@ -30,9 +30,9 @@ module.exports.addCarType = async (req, res) => {
         if(!validationResult)
             throw new Error('Request body must contain the car company brand and year');
         
-        await carTypeService.addCarType(req.body);
+        const newCarType = await carTypeService.addCarType(req.body);
         
-        res.status(200).json({ message: SUCCESS_MESSAGES.POST(MODEL_NAME) });
+        res.status(200).json({ createdCarTypeId: newCarType._id ,message: SUCCESS_MESSAGES.POST(MODEL_NAME) });
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.POST(MODEL_NAME), error }); }
 };
@@ -41,11 +41,11 @@ module.exports.addCarType = async (req, res) => {
  * Used to receive a specific carType from the DB.
  * Request has to contain an id param. 
  * 
- * @respond json with the requested carType or failure message
+ * @respond requested carType 
  */
 module.exports.getSpecificCarType = async (req, res) => {
     try{
-        const requestedCarType = await carTypeService.getSpecificCarType(validateAndReturnParam(req));
+        const requestedCarType = await carTypeService.getSpecificCarType(req.params.id);
         
         res.json(requestedCarType);
 
@@ -53,16 +53,35 @@ module.exports.getSpecificCarType = async (req, res) => {
 };
 
 /**
+ * Used to update a specific carType
+ * 
+ * @respond carType before the update
+ */
+module.exports.updateCarType = async (req, res) => {
+    try{
+        const allowedKeys = ['companyName', 'brandName', 'year', 'drivesID', 'modelsID'];
+        const validationResult = Object.keys(req.body).every(key => allowedKeys.includes(key));
+        if(!validationResult)
+            throw new Error('Request body supports only the following keys [companyName, brandName, year, drivesID, modelsID]');
+        
+        const updatedCarType = await carTypeService.updateCarType(req.params.id, req.body);
+        
+        res.status(200).json({ updatedCarType, message: SUCCESS_MESSAGES.PATCH(MODEL_NAME)});
+
+    } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.PATCH(MODEL_NAME), error }); }
+};
+
+/**
  * Used to add a drive and its rawData to a specific carType from the DB.
  * Request has to contain an id param and driveId.
  * 
- * @respond success or failure message
+ * @respond added drive id
  */
-module.exports.addDriveToSpecificCarType = (req, res) => {
+module.exports.addDriveToSpecificCarType = async (req, res) => {
     try{
         if(!req.driveId) throw new Error('Request must contain driveId');
-        await carTypeService.addDriveToSpecificCarType(validateAndReturnParam(req), req.driveId);
-        res.status(200).json({message: SUCCESS_MESSAGES.POST('Drive')})
+        await carTypeService.addDriveToSpecificCarType(req.params.id, req.driveId);
+        res.status(200).json({ newDriveId: req.driveId, message: SUCCESS_MESSAGES.POST('Drive')})
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.POST(MODEL_NAME), error }); }
 };
@@ -71,13 +90,12 @@ module.exports.addDriveToSpecificCarType = (req, res) => {
  * Used to delete a specific carType from the DB.
  * Request has to contain an id param. 
  * 
- * @respond success or failure message
+ * @respond deleted carType
  */
 module.exports.deleteSpecificCarType = async (req, res) => {
     try{
-        await carTypeService.deleteSpecificCarType(validateAndReturnParam(req));
-        
-        res.status(200).json({ message: SUCCESS_MESSAGES.DELETE(MODEL_NAME) });
+        const deletedCarType = await carTypeService.deleteSpecificCarType(req.params.id);
+        res.status(200).json({ deletedCarType, message: SUCCESS_MESSAGES.DELETE(MODEL_NAME) });
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.DELETE(MODEL_NAME), error }); }
 };
