@@ -1,6 +1,7 @@
 
 const modelRouteService = require('./modelRoute.service');
 const {SUCCESS_MESSAGES, ERROR_MESSAGES} = require('../../../services/messages.util');
+const {validateKeysInObject, validateObjectKeys} = require('../../../services/validations.util');
 const MODEL_NAME = 'Model Route';
 
 /**
@@ -11,7 +12,6 @@ const MODEL_NAME = 'Model Route';
 module.exports.getModelRoutes = async (req, res) => {
     try {
         const modelRoutes = await modelRouteService.getModelRoutes();
-        
         res.json(modelRoutes);
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.GET(MODEL_NAME), error }); }
@@ -25,12 +25,8 @@ module.exports.getModelRoutes = async (req, res) => {
  */
 module.exports.addModelRoute = async (req, res) => {
     try {
-        const validationResult = ['routeStartingPoint', 'routeEndingPoint'].every(key => key in req.body);
-        if(!validationResult)
-            throw new Error('Request body must contain route starting and ending points');
-        
+        validateKeysInObject(['routeStartingPoint', 'routeEndingPoint'], req.body);
         const newModelRoute = await modelRouteService.addModelRoute(req.body);
-        
         res.status(200).json({ createdModelRouteId: newModelRoute._id ,message: SUCCESS_MESSAGES.POST(MODEL_NAME) });
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.POST(MODEL_NAME), error }); }
@@ -45,7 +41,6 @@ module.exports.addModelRoute = async (req, res) => {
 module.exports.getSpecificModelRoute = async (req, res) => {
     try{
         const requestedModelRoute = await modelRouteService.getSpecificModelRoute(req.params.id);
-        
         res.json(requestedModelRoute);
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.GET(MODEL_NAME), error }); }
@@ -58,13 +53,8 @@ module.exports.getSpecificModelRoute = async (req, res) => {
  */
 module.exports.updateSpecificModelRoute = async (req, res) => {
     try{
-        const allowedKeys = ['routeStartingPoint', 'routeEndingPoint'];
-        const validationResult = Object.keys(req.body).every(key => allowedKeys.includes(key));
-        if(!validationResult)
-            throw new Error('Request body supports only the following keys [routeStartingPoint, routeEndingPoint]');
-        
+        validateObjectKeys(['routeStartingPoint', 'routeEndingPoint'], req.body);
         const updatedModelRoute = await modelRouteService.updateSpecificModelRoute(req.params.id, req.body);
-        
         res.status(200).json({ updatedModelRoute, message: SUCCESS_MESSAGES.PATCH(MODEL_NAME)});
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.PATCH(MODEL_NAME), error }); }
@@ -80,6 +70,7 @@ module.exports.deleteSpecificModelRoute = async (req, res) => {
     try{
         const deletedModelRoute = await modelRouteService.deleteSpecificModelRoute(req.params.id);
         res.status(200).json({ deletedModelRoute, message: SUCCESS_MESSAGES.DELETE(MODEL_NAME) });
+        
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.DELETE(MODEL_NAME), error }); }
 };
 

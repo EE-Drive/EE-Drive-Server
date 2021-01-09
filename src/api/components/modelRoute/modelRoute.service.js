@@ -6,14 +6,7 @@ const ModelRouteModel = require('./modelRoute.model');
  * 
  * @resolve modelRoutes data
  */
-module.exports.getModelRoutes = () => {
-    return new Promise((resolve, reject) => {
-        ModelRouteModel
-            .find()
-            .then(resolve)
-            .catch(reject);
-    });
-};
+module.exports.getModelRoutes = () => ModelRouteModel.find();
 
 /**
  * Used to insert a modelRoute to the DB
@@ -21,14 +14,8 @@ module.exports.getModelRoutes = () => {
  * @param {object} newModelRoute object contains the modelRoute starting and ending points
  * @resolve the created modelRoute
  */
-module.exports.addModelRoute = ({routeStartingPoint, routeEndingPoint}) => {
-    return new Promise((resolve, reject) => {
-        new ModelRouteModel({routeStartingPoint, routeEndingPoint})
-            .save()
-            .then(resolve)
-            .catch(reject);
-    });
-};
+module.exports.addModelRoute = ({routeStartingPoint, routeEndingPoint}) => 
+    new ModelRouteModel({routeStartingPoint, routeEndingPoint}).save();
 
 /**
  * Used to fetch a specific modelRoute from the DB.
@@ -36,14 +23,7 @@ module.exports.addModelRoute = ({routeStartingPoint, routeEndingPoint}) => {
  * @param {string} modelRouteId 
  * @resolve requested modelRoute data
  */
-module.exports.getSpecificModelRoute = modelRouteId => {
-    return new Promise((resolve, reject) => {
-        ModelRouteModel
-            .findById(modelRouteId)
-            .then(resolve)
-            .catch(reject);
-    });
-};
+module.exports.getSpecificModelRoute = modelRouteId => ModelRouteModel.findById(modelRouteId);
 
 /**
  * Used to updated an existing modelRoute
@@ -52,14 +32,8 @@ module.exports.getSpecificModelRoute = modelRouteId => {
  * @param {object} change 
  * @resolve modelRoute before the update
  */
-module.exports.updateSpecificModelRoute = async (modelRouteId, change) => {
-    return new Promise((resolve, reject) => {
-        ModelRouteModel
-            .findByIdAndUpdate(modelRouteId, { $set:change })
-            .then(resolve)
-            .catch((reject));
-    });
-};
+module.exports.updateSpecificModelRoute = (modelRouteId, change) => 
+    ModelRouteModel.findByIdAndUpdate(modelRouteId, { $set:change });
 
 /**
  * Used to delete a specific modelRoute from the DB.
@@ -67,11 +41,5 @@ module.exports.updateSpecificModelRoute = async (modelRouteId, change) => {
  * @param {string} modelRouteId 
  * @resolve the deleted modelRoute
  */
-module.exports.deleteSpecificModelRoute = modelRouteId => {
-    return new Promise((resolve, reject) => {
-        ModelRouteModel
-            .findByIdAndDelete(modelRouteId)
-            .then(resolve)
-            .catch(reject);
-    });
-};
+module.exports.deleteSpecificModelRoute = modelRouteId => 
+    ModelRouteModel.findByIdAndDelete(modelRouteId);

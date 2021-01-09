@@ -2,7 +2,6 @@
 const mongoose = require('mongoose');
 const schemaTypes = require('../../../config/schemaTypes.constants');
 
-//model schema 
 const modelSchema = new mongoose.Schema({
     companyName: schemaTypes.requiredMediumString,
     brandName: schemaTypes.requiredMediumString,
@@ -11,5 +10,4 @@ const modelSchema = new mongoose.Schema({
     modelsID: [{type: mongoose.Schema.ObjectId, ref:'OptimalModel'}],
 },{ timestamps:true });
 
-// export and create model
 module.exports = mongoose.model('CarType', modelSchema);
