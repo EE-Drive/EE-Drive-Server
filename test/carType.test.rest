@@ -21,7 +21,7 @@ content-type: application/json
 GET http://localHost:8080/api/car-type/5ff8c4187d0c5254e8515a24 HTTP/1.1
 
 ### update specific car type
-PATCH http://localHost:8080/api/5ff8c4187d0c5254e8515a24 HTTP/1.1
+PATCH http://localHost:8080/api/car-type/5ff8c4187d0c5254e8515a24 HTTP/1.1
 content-type: application/json
 
 {

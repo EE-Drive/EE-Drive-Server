@@ -1,0 +1,31 @@
+
+
+######################## Target All ########################
+
+### get all model routes
+GET http://localHost:8080/api/model-route HTTP/1.1
+
+### add car model route
+POST http://localHost:8080/api/model-route HTTP/1.1
+content-type: application/json
+
+{
+    "routeStartingPoint": {"lat": "35.43453", "long": "46.43453"},
+    "routeEndingPoint": {"lat": "38.43453", "long": "47.43453"}
+}
+
+###################### Target Specific #####################
+
+### get specific model route
+GET http://localHost:8080/api/model-route/5ff8e7412049ec4e8cfaf29b HTTP/1.1
+
+### update specific model route
+PATCH http://localHost:8080/api/model-route/5ff8e7412049ec4e8cfaf29b HTTP/1.1
+content-type: application/json
+
+{
+    "routeStartingPoint": {"lat": "32.43453", "long": "46.43453"}
+}
+
+### delete specific model route
+DELETE  http://localHost:8080/api/model-route/5ff8e7412049ec4e8cfaf29b HTTP/1.1
