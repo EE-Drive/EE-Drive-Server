@@ -15,7 +15,7 @@ router
     .route('/:id')
     .all(validateIdParamMiddleware)
     .get(carTypeController.getSpecificCarType)
-    .patch(carTypeController.updateCarType)
+    .patch(carTypeController.updateSpecificCarType)
     .post(driveController.addDriveMiddleware, carTypeController.addDriveToSpecificCarType)
     .delete(carTypeController.deleteSpecificCarType);
 

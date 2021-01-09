@@ -18,10 +18,10 @@ content-type: application/json
 ###################### Target Specific #####################
 
 ### get specific car type
-GET http://localHost:8080/api/car-type/5ff8c4187d0c5254e8515a24 HTTP/1.1
+GET http://localHost:8080/api/car-type/5ff9a07c2bef585608da7710 HTTP/1.1
 
 ### update specific car type
-PATCH http://localHost:8080/api/car-type/5ff8c4187d0c5254e8515a24 HTTP/1.1
+PATCH http://localHost:8080/api/car-type/5ff9a07c2bef585608da7710 HTTP/1.1
 content-type: application/json
 
 {
@@ -29,7 +29,7 @@ content-type: application/json
 }
 
 ### add drive to a specific car type
-POST http://localHost:8080/api/car-type/5ff8c4187d0c5254e8515a24 HTTP/1.1
+POST http://localHost:8080/api/car-type/5ff9a07c2bef585608da7710 HTTP/1.1
 content-type: application/json
 
 {
@@ -37,4 +37,4 @@ content-type: application/json
 }
 
 ### delete specific car type
-DELETE  http://localHost:8080/api/car-type/5ff8c4187d0c5254e8515a24 HTTP/1.1
+DELETE  http://localHost:8080/api/car-type/5ff9a07c2bef585608da7710 HTTP/1.1

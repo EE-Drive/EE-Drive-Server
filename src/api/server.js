@@ -2,23 +2,19 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const {configureRoutes} = require('./routes');
+const apiRouter = require('./routes');
+const {ROUTES} = require('../config/global.constants');
 
-// app
 const app = express();
 app.use(cors());
 app.use(express.json());
-configureRoutes(app);
+app.use(ROUTES.API, apiRouter);
 
-// mongoose connection
 const connection = mongoose.connection;
 connection.once('open', () => console.log('MongoDB db connection successfully established'));
 connection.once('close', () => console.log('MongoDB db connection successfully terminated'))
 
-// connect to mongoose
 const connectToMongoose = dbUrl => { mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true }); };
-
-// disconnect from mongoose
 const closeMongooseConnection = () => { if(connection.readyState === 2) connection.close(); };
 
 /**

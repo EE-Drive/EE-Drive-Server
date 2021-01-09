@@ -1,6 +1,7 @@
 
 const carTypeService = require('./carType.service');
 const {SUCCESS_MESSAGES, ERROR_MESSAGES} = require('../../../services/messages.util');
+const {validateKeysInObject, validateObjectKeys} = require('../../../services/validations.util');
 const MODEL_NAME = 'Car Type';
 
 /**
@@ -11,7 +12,6 @@ const MODEL_NAME = 'Car Type';
 module.exports.getCarTypes = async (req, res) => {
     try {
         const carTypes = await carTypeService.getCarTypes();
-        
         res.json(carTypes);
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.GET(MODEL_NAME), error }); }
@@ -25,12 +25,8 @@ module.exports.getCarTypes = async (req, res) => {
  */
 module.exports.addCarType = async (req, res) => {
     try {
-        const validationResult = ['companyName', 'brandName', 'year'].every(key => key in req.body);
-        if(!validationResult)
-            throw new Error('Request body must contain the car company brand and year');
-        
+        validateKeysInObject(['companyName', 'brandName', 'year'], req.body);        
         const newCarType = await carTypeService.addCarType(req.body);
-        
         res.status(200).json({ createdCarTypeId: newCarType._id ,message: SUCCESS_MESSAGES.POST(MODEL_NAME) });
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.POST(MODEL_NAME), error }); }
@@ -45,7 +41,6 @@ module.exports.addCarType = async (req, res) => {
 module.exports.getSpecificCarType = async (req, res) => {
     try{
         const requestedCarType = await carTypeService.getSpecificCarType(req.params.id);
-        
         res.json(requestedCarType);
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.GET(MODEL_NAME), error }); }
@@ -56,15 +51,10 @@ module.exports.getSpecificCarType = async (req, res) => {
  * 
  * @respond carType before the update
  */
-module.exports.updateCarType = async (req, res) => {
+module.exports.updateSpecificCarType = async (req, res) => {
     try{
-        const allowedKeys = ['companyName', 'brandName', 'year', 'drivesID', 'modelsID'];
-        const validationResult = Object.keys(req.body).every(key => allowedKeys.includes(key));
-        if(!validationResult)
-            throw new Error('Request body supports only the following keys [companyName, brandName, year, drivesID, modelsID]');
-        
-        const updatedCarType = await carTypeService.updateCarType(req.params.id, req.body);
-        
+        validateObjectKeys(['companyName', 'brandName', 'year', 'drivesID', 'modelsID'], req.body);
+        const updatedCarType = await carTypeService.updateSpecificCarType(req.params.id, req.body);
         res.status(200).json({ updatedCarType, message: SUCCESS_MESSAGES.PATCH(MODEL_NAME)});
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.PATCH(MODEL_NAME), error }); }
