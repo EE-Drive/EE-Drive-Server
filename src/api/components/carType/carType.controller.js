@@ -88,11 +88,3 @@ module.exports.deleteSpecificCarType = async (req, res) => {
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.DELETE(MODEL_NAME), error }); }
 };
-
-
-
-
-
-
-
-
