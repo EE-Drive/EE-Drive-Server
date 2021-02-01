@@ -1,19 +1,11 @@
-const router = require("express").Router();
-const driveController = require("../drive/drive.controller");
-const {
-  validateIdParamMiddleware,
-} = require("../../middleware/validation.middleware");
 
-// Target All
-router.route("/").get(driveController.getDrives).post(driveController.addDrive);
+const genericModelRouter = require('../../../services/genericModelRouter');
+const driveController = require("./drive.controller");
 
-// Target Specific
+const router = genericModelRouter(driveController);
+
 router
-  .route("/:id")
-  .all(validateIdParamMiddleware)
-  .get(driveController.getSpecificDrive)
-  .patch(driveController.updateSpecificDrive)
-  .post(driveController.addRouteRawData)
-  .delete(driveController.deleteSpecificDrive);
+    .route('/:id')
+    .post(driveController.addRouteRawData);
 
 module.exports = router;

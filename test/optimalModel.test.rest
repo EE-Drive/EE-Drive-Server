@@ -2,11 +2,11 @@
 
 ######################## Target All ########################
 
-### get all model routes
-GET http://localHost:8080/api/model-route HTTP/1.1
+### get all optimal models
+GET http://localHost:8080/api/optimal-model HTTP/1.1
 
-### add car model route
-POST http://localHost:8080/api/model-route HTTP/1.1
+### add car optimal model
+POST http://localHost:8080/api/optimal-model HTTP/1.1
 content-type: application/json
 
 {
@@ -29,18 +29,18 @@ content-type: application/json
       {
         "vertexA": "5ff8e7412049ec4e8cfaf29b",
         "vertexB": "5ff7e7413049ec4e9cfab39f",
-        "fuelCon": "6.48235",
+        "fuelCon": "6.48235"
       }
     ]
 }
 
 ###################### Target Specific #####################
 
-### get specific model route
-GET http://localHost:8080/api/model-route/5ff8e7412049ec4e8cfaf29b HTTP/1.1
+### get specific optimal model
+GET http://localHost:8080/api/optimal-model/601880b436613791e0fa80c2 HTTP/1.1
 
-### update specific model route
-PATCH http://localHost:8080/api/model-route/5ff8e7412049ec4e8cfaf29b HTTP/1.1
+### update specific optimal model
+PATCH http://localHost:8080/api/optimal-model/601880b436613791e0fa80c2 HTTP/1.1
 content-type: application/json
 
 {
@@ -48,10 +48,10 @@ content-type: application/json
       {
         "vertexA": "5ff7e7413049ec4e9cfab39f",
         "vertexB": "5ff8e7412049ec4e8cfaf29b",
-        "fuelCon": "6.48235",
+        "fuelCon": "6.48235"
       }
     ]
 }
 
-### delete specific model route
-DELETE  http://localHost:8080/api/model-route/5ff8e7412049ec4e8cfaf29b HTTP/1.1
+### delete specific optimal model
+DELETE  http://localHost:8080/api/optimal-model/6018804c36613791e0fa80c1 HTTP/1.1

@@ -28,7 +28,7 @@ const GenericModelController = (modelName, modelService, mustProperties, allowed
      */
     addItem(req, res){
         validateKeysInObject(mustProperties, req.body);
-        const newItem = mustProperties.reduce((current, prev) => ({...prev, [current]:req.body[current]}), {});        
+        const newItem = mustProperties.reduce((prev, current) => ({...prev, [current]:req.body[current]}), {});   
         modelService.addItem(newItem)
             .then( savedItem => res.status(200).json({createdItemId:savedItem._id, message:SUCCESS_MESSAGES.POST(modelName)}))
             .catch(err => res.status(400).json({ message: ERROR_MESSAGES.POST(modelName), error: err.message}));

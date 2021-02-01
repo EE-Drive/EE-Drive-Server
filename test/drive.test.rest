@@ -3,10 +3,10 @@
 ######################## Target All ########################
 
 ### get all drive routes
-GET http://localHost:8080/api/drive-route HTTP/1.1
+GET http://localHost:8080/api/drive HTTP/1.1
 
 ### add drive route
-POST http://localHost:8080/api/drive-route HTTP/1.1
+POST http://localHost:8080/api/drive HTTP/1.1
 content-type: application/json
 
 {
@@ -24,18 +24,18 @@ content-type: application/json
 ###################### Target Specific #####################
 
 ### get specific drive route
-GET http://localHost:8080/api/drive-route/5ff9a07c2bef585608da7710 HTTP/1.1
+GET http://localHost:8080/api/drive/60187d0c4bcc8a7f5c62fe8f HTTP/1.1
 
 ### update specific drive route
-PATCH http://localHost:8080/api/drive-route/5ff9a07c2bef585608da7710 HTTP/1.1
+PATCH http://localHost:8080/api/drive/60187d0c4bcc8a7f5c62fe8f HTTP/1.1
 content-type: application/json
 
 {
-    "carTypeId": "change"
+    "driveRawData": "change"
 }
 
 ### add drive raw data to a specific drive route
-POST http://localHost:8080/api/drive-route/5ff9a07c2bef585608da7710 HTTP/1.1
+POST http://localHost:8080/api/drive/60187d0c4bcc8a7f5c62fe8 HTTP/1.1
 content-type: application/json
 
 {
@@ -43,4 +43,4 @@ content-type: application/json
 }
 
 ### delete specific car type
-DELETE  http://localHost:8080/api/drive-route/5ff9a07c2bef585608da7710 HTTP/1.1
+DELETE  http://localHost:8080/api/drive/60187d0c4bcc8a7f5c62fe8 HTTP/1.1

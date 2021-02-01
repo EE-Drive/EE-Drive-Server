@@ -1,7 +1,5 @@
 
 const express = require('express');
-const GenericModelService = require('./genericModelService.util');
-const GenericModelController = require('./genericModelController.util');
 const {validateIdParamMiddleware} = require('../api/middleware/validation.middleware');
 
 /**
@@ -11,12 +9,10 @@ const {validateIdParamMiddleware} = require('../api/middleware/validation.middle
  * @param {[string]} allowedPropertiesToUpdate 
  * @return {object} express router object with default routes.
  */
-const GenericModelRouter = (model, modelName, mustProperties, allowedPropertiesToUpdate) => {
+const GenericModelRouter = modelController => {
 
     const router = express.Router();
-    const modelService = GenericModelService(model);
-    const modelController = GenericModelController(modelName, modelService, mustProperties, allowedPropertiesToUpdate);
-    
+
     router
         .route('/')
         .get(modelController.getItems)
