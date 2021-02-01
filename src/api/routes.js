@@ -6,9 +6,9 @@ const optimalModelRoute = require("./components/optimalModel/optimalModel.route"
 const { ROUTES } = require("../config/global.constants");
 
 router.use(ROUTES.CAR_TYPE_ROUTE, carTypeRoute);
-router.use(ROUTES.DRIVE_ROUTE, driveRoute);
-router.use(ROUTES.MODEL_ROUTE_ROUTE, modelRouteRoute);
-router.use(ROUTES.OPTIMAL_MODEL_ROUTE, optimalModelRoute);
+//router.use(ROUTES.DRIVE_ROUTE, driveRoute);
+//router.use(ROUTES.MODEL_ROUTE_ROUTE, modelRouteRoute);
+//router.use(ROUTES.OPTIMAL_MODEL_ROUTE, optimalModelRoute);
 
 module.exports = router;
 

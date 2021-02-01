@@ -1,22 +1,16 @@
 
-const router = require('express').Router();
+const genericModelRouter = require('../../../services/genericModelRouter');
+const carTypeModel = require('./carType.model');
 const carTypeController = require('./carType.controller');
 const driveController = require('../drive/drive.controller');
-const {validateIdParamMiddleware} = require('../../middleware/validation.middleware');
 
-// Target All
-router
-    .route('/')
-    .get(carTypeController.getCarTypes)
-    .post(carTypeController.addCarType);
+const modelName = 'Car Type';
+const mustProperties = ['companyName', 'brandName', 'year'];
+const allowedPropertiesToUpdate = ['companyName', 'brandName', 'year', 'drivesID', 'modelsID'];
+const router = genericModelRouter(carTypeModel, modelName, mustProperties, allowedPropertiesToUpdate);
 
-// Target Specific
 router
     .route('/:id')
-    .all(validateIdParamMiddleware)
-    .get(carTypeController.getSpecificCarType)
-    .patch(carTypeController.updateSpecificCarType)
-    .post(driveController.addDriveMiddleware, carTypeController.addDriveToSpecificCarType)
-    .delete(carTypeController.deleteSpecificCarType);
+    .post(driveController.addDriveMiddleware, carTypeController.addDriveToSpecificCarType);
 
 module.exports = router;
