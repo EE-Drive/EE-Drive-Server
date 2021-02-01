@@ -1,0 +1,46 @@
+
+# Do not run this test until the testing DB is set.
+######################## Target All ########################
+
+### get all drive routes
+GET http://localHost:8080/api/drive-route HTTP/1.1
+
+### add drive route
+POST http://localHost:8080/api/drive-route HTTP/1.1
+content-type: application/json
+
+{
+    "carTypeId": "5ff9a07c2bef585608da7710",
+    "driveRawData": [
+      {
+        "routeID": "5ff8e7412049ec4e8cfaf29b",
+        "rawData": [
+          {"lat": "35.43453", "long": "46.43453", "fuelCon": "6.42356", "speed": "92"}
+        ]
+      }
+    ]
+}
+
+###################### Target Specific #####################
+
+### get specific drive route
+GET http://localHost:8080/api/drive-route/5ff9a07c2bef585608da7710 HTTP/1.1
+
+### update specific drive route
+PATCH http://localHost:8080/api/drive-route/5ff9a07c2bef585608da7710 HTTP/1.1
+content-type: application/json
+
+{
+    "carTypeId": "change"
+}
+
+### add drive raw data to a specific drive route
+POST http://localHost:8080/api/drive-route/5ff9a07c2bef585608da7710 HTTP/1.1
+content-type: application/json
+
+{
+
+}
+
+### delete specific car type
+DELETE  http://localHost:8080/api/drive-route/5ff9a07c2bef585608da7710 HTTP/1.1
