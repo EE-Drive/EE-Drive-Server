@@ -1,4 +1,3 @@
-
 const modelRouteService = require('./modelRoute.service');
 const {SUCCESS_MESSAGES, ERROR_MESSAGES} = require('../../../services/messages.util');
 const {validateKeysInObject, validateObjectKeys} = require('../../../services/validations.util');

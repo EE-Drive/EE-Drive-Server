@@ -1,0 +1,57 @@
+
+
+######################## Target All ########################
+
+### get all model routes
+GET http://localHost:8080/api/model-route HTTP/1.1
+
+### add car model route
+POST http://localHost:8080/api/model-route HTTP/1.1
+content-type: application/json
+
+{
+    "routeID": "5ff8e7412049ec4e8cfaf29b",
+    "vertices": [
+      {
+        "vertexId": "5ff8e7412049ec4e8cfaf29b",
+        "lat": "35.43453",
+        "long": "46.43453",
+        "speed": "120"
+      },
+      {
+        "vertexId": "5ff7e7413049ec4e9cfab39f",
+        "lat": "38.43453",
+        "long": "47.43453",
+        "speed": "110"
+      }
+    ],
+    "edges": [
+      {
+        "vertexA": "5ff8e7412049ec4e8cfaf29b",
+        "vertexB": "5ff7e7413049ec4e9cfab39f",
+        "fuelCon": "6.48235",
+      }
+    ]
+}
+
+###################### Target Specific #####################
+
+### get specific model route
+GET http://localHost:8080/api/model-route/5ff8e7412049ec4e8cfaf29b HTTP/1.1
+
+### update specific model route
+PATCH http://localHost:8080/api/model-route/5ff8e7412049ec4e8cfaf29b HTTP/1.1
+content-type: application/json
+
+{
+    "edges": [
+      {
+        "vertexA": "5ff7e7413049ec4e9cfab39f",
+        "vertexB": "5ff8e7412049ec4e8cfaf29b",
+        "fuelCon": "6.48235",
+      }
+    ]
+}
+
+### delete specific model route
+DELETE  http://localHost:8080/api/model-route/5ff8e7412049ec4e8cfaf29b HTTP/1.1
