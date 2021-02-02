@@ -5,6 +5,13 @@
 const GenericModelService = (Model) => ({
     
     /**
+     * Used to check if the item exists in the DB
+     * 
+     * @param {string} itemId 
+     */
+    isItemExist(itemId){ return Model.exists({_id:itemId}); },
+
+    /**
      * Used to fetch all items data from the DB.
      * 
      * @resolve items data
@@ -42,7 +49,7 @@ const GenericModelService = (Model) => ({
      * @param {string} itemId 
      * @resolve the deleted item
      */
-    deleteSpecificCarType(itemId){ return Model.findByIdAndDelete(itemId); }
+    deleteSpecificItem(itemId){ return Model.findByIdAndDelete(itemId); }
 
 });
 

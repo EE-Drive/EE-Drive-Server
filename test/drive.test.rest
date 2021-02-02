@@ -10,18 +10,21 @@ POST http://localHost:8080/api/drive HTTP/1.1
 content-type: application/json
 
 {
-    "carTypeId": "5ff9a07c2bef585608da7710",
+    "carTypeId": "6019c55e9ab1697d0ce42b56",
     "driveRawData": [
       {
         "routeID": "5ff8e7412049ec4e8cfaf29b",
         "rawData": [
-          {"lat": "35.43453", "long": "46.43453", "fuelCon": "6.42356", "speed": "92"}
+          {"lat": "355.43453", "long": "456.43453", "fuelCon": "6.42356", "speed": "92"}
         ]
       }
     ]
 }
 
 ###################### Target Specific #####################
+
+### delete specific car type
+DELETE  http://localHost:8080/api/drive/6019c34016bfde9aec0635ce HTTP/1.1
 
 ### get specific drive route
 GET http://localHost:8080/api/drive/60187d0c4bcc8a7f5c62fe8f HTTP/1.1
@@ -34,13 +37,3 @@ content-type: application/json
     "driveRawData": "change"
 }
 
-### add drive raw data to a specific drive route
-POST http://localHost:8080/api/drive/60187d0c4bcc8a7f5c62fe8 HTTP/1.1
-content-type: application/json
-
-{
-
-}
-
-### delete specific car type
-DELETE  http://localHost:8080/api/drive/60187d0c4bcc8a7f5c62fe8 HTTP/1.1

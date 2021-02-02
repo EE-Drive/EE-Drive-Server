@@ -10,8 +10,8 @@ POST http://localHost:8080/api/model-route HTTP/1.1
 content-type: application/json
 
 {
-    "routeStartingPoint": {"lat": "35.43453", "long": "46.43453"},
-    "routeEndingPoint": {"lat": "38.43453", "long": "47.43453"}
+    "routeStartingPoint": {"lat": "31.779875", "long": "34.668727"},
+    "routeEndingPoint": {"lat": "31.787796", "long": "34.676816"}
 }
 
 ###################### Target Specific #####################
@@ -28,4 +28,4 @@ content-type: application/json
 }
 
 ### delete specific model route
-DELETE  http://localHost:8080/api/model-route/6018804036613791e0fa80c0 HTTP/1.1
+DELETE  http://localHost:8080/api/model-route/6019aa0f1633c999409ddf2a HTTP/1.1

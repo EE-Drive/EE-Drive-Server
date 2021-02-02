@@ -29,11 +29,11 @@ content-type: application/json
 }
 
 ### add drive to a specific car type
-POST http://localHost:8080/api/car-type/601877ea72ac659498aab9ed HTTP/1.1
+POST http://localHost:8080/api/car-type/6019c57c9ab1697d0ce42b57 HTTP/1.1
 content-type: application/json
 
 {
-    "carTypeId": "5ff9a07c2bef585608da7710",
+    "carTypeId": "601877ea72ac659498aab9ed",
     "driveRawData": [
       {
         "routeID": "5ff8e7412049ec4e8cfaf29b",
@@ -45,4 +45,15 @@ content-type: application/json
 }
 
 ### delete specific car type
-DELETE  http://localHost:8080/api/car-type/5ff9a07c2bef585608da7710 HTTP/1.1
+DELETE  http://localHost:8080/api/car-type/6019c55e9ab1697d0ce42b56 HTTP/1.1
+
+###
+POST http://localHost:8080/api/car-type/drive-csv/6019c6459ab1697d0ce42b5a
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="driveDetails"; filename="driveDetails.csv"
+Content-Type: text/csv
+
+< ./drive-2019-12-26.csv
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

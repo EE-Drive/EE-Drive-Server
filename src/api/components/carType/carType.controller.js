@@ -17,7 +17,7 @@ const carTypeController = GenericModelController(MODEL_NAME, carTypeService, mus
 carTypeController.addDriveToSpecificCarType = async (req, res) => {
     try{
         if(!req.driveId) throw new Error('Request must contain driveId');
-        const updatedItem = await carTypeService.addDriveToSpecificCarType(req.params.id, req.driveId);
+        const updatedItem = await carTypeService.addDriveToSpecificCarType(req.params.id ?? req.body.carTypeId, req.driveId);
         res.status(200).json({ updatedItem, message: SUCCESS_MESSAGES.POST('Drive')})
 
     } catch (error) { res.status(400).json({ message: ERROR_MESSAGES.POST(MODEL_NAME), error }); }
