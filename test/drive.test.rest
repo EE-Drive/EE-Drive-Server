@@ -24,7 +24,7 @@ content-type: application/json
 ###################### Target Specific #####################
 
 ### delete specific car type
-DELETE  http://localHost:8080/api/drive/6019c34016bfde9aec0635ce HTTP/1.1
+DELETE  http://localHost:8080/api/drive/6019ce2672fb079bfc6debf9 HTTP/1.1
 
 ### get specific drive route
 GET http://localHost:8080/api/drive/60187d0c4bcc8a7f5c62fe8f HTTP/1.1

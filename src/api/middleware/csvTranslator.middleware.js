@@ -5,7 +5,7 @@ const {findRouteId} = require('../components/modelRoute/modelRoute.service');
 
 // csv row -> raw data format
 const createDriveRawData = async (rawData, csvRow) => {
-    const routeId = await findRouteId(csvRow.latitude, csvRow.longitude);
+    const routeId = await findRouteId(csvRow.Latitude, csvRow.Longitude);
     if(!routeId) return;
     const data = {
         lat: csvRow.Latitude,
@@ -22,7 +22,7 @@ const createDriveRawData = async (rawData, csvRow) => {
  * 
  * @throws Error if file is missing
  */
-module.exports = (req, res, next)=> {
+module.exports = async (req, res, next)=> {
     if(!req.file) res.status(404).json({message: "cant read the file"});
     const carTypeId = req.params.id;
     const filePath = req.file.path;
