@@ -17,10 +17,10 @@ content-type: application/json
 ###################### Target Specific #####################
 
 ### get specific model route
-GET http://localHost:8080/api/model-route/5ff8e7412049ec4e8cfaf29b HTTP/1.1
+GET http://localHost:8080/api/model-route/6018804036613791e0fa80c0 HTTP/1.1
 
 ### update specific model route
-PATCH http://localHost:8080/api/model-route/5ff8e7412049ec4e8cfaf29b HTTP/1.1
+PATCH http://localHost:8080/api/model-route/6018804c36613791e0fa80c1 HTTP/1.1
 content-type: application/json
 
 {
@@ -28,4 +28,4 @@ content-type: application/json
 }
 
 ### delete specific model route
-DELETE  http://localHost:8080/api/model-route/5ff8e7412049ec4e8cfaf29b HTTP/1.1
+DELETE  http://localHost:8080/api/model-route/6018804036613791e0fa80c0 HTTP/1.1

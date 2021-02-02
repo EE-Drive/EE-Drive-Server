@@ -1,6 +1,7 @@
 
 const router = require("express").Router();
 const carTypeRoute = require("./components/carType/carType.route");
+const driveRoute = require("./components/drive/drive.route");
 const modelRouteRoute = require("./components/modelRoute/modelRoute.route");
 const optimalModelRoute = require("./components/optimalModel/optimalModel.route");
 const { ROUTES } = require("../config/global.constants");
