@@ -64,7 +64,7 @@ const GenericModelController = (modelName, modelService, mustProperties, allowed
      * @respond deleted item
      */
     deleteSpecificItem(req, res){
-        modelService.deleteSpecificCarType(req.params.id)
+        modelService.deleteSpecificItem(req.params.id)
             .then( deletedItem => res.status(200).json({ deletedItem, message: SUCCESS_MESSAGES.DELETE(modelName) }))
             .catch(err => res.status(400).json({ message: ERROR_MESSAGES.DELETE(modelName), error: err.message }));
     },

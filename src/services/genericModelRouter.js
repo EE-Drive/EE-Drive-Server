@@ -3,15 +3,13 @@ const express = require('express');
 const {validateIdParamMiddleware} = require('../api/middleware/validation.middleware');
 
 /**
- * @param {object} model mongoose object
- * @param {string} modelName 
- * @param {[string]} mustProperties 
- * @param {[string]} allowedPropertiesToUpdate 
- * @return {object} express router object with default routes.
+ * Used to create a generic router.
+ * 
+ * @param {object} modelController 
  */
-const GenericModelRouter = modelController => {
+const GenericModelRouter = (modelController, router = express.Router()) => {
 
-    const router = express.Router();
+    if(!modelController) return router;
 
     router
         .route('/')
