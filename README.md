@@ -110,6 +110,38 @@ This is an example of how to list things you need to use the software and how to
 
 ## Roadmap
 
+### car type
+  - GET api/car-type => fetch all car types from the db.
+  - POST api/car-type => add a car type to the db.
+  - GET api/car-type/:id => get specific car type.
+  - POST api/car-type/:id => add a drive to a specific car type.
+  - PATCH api/car-type/:id => update specific car type.
+  - DELETE api/car-type/:id => delete specific car type.
+  - POST api/drive-csv/:id => add drive from csv.
+ 
+### drive
+  - GET api/drive => fetch all drives from the db.
+  - POST api/drive => add a drive to a specific car type.
+  - GET api/drive/:id => get specific drive.
+  - POST api/drive/:id => add raw data to an existing drive.
+  - PATCH api/drive/:id => update specific drive.
+  - DELETE api/drive/:id => delete specific drive.
+   
+### model route
+  - GET api/model-route => fetch all car types from the db.
+  - POST api/model-route => add a model-routes to the db.
+  - GET api/model-route/:id => get specific model-route.
+  - PATCH api/model-route/:id => update specific model-route.
+  - DELETE api/model-route/:id => delete specific model-route.
+  
+### optimal model
+  - GET api/optimal-model => fetch all optimal-models from the db.
+  - POST api/optimal-model => add a optimal-model to the db.
+  - GET api/optimal-model/:id => get specific optimal-model.
+  - PATCH api/optimal-model/:id => update specific optimal-model.
+  - DELETE api/optimal-model/:id => delete specific optimal-model.
+ 
+
 See the [open issues](https://github.com/EE-Drive/EE-Drive-Server/issues) for a list of proposed features (and known issues).
 
 <!-- CONTRIBUTING -->
