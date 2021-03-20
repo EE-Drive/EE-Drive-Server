@@ -35,7 +35,7 @@ const GenericModelController = (modelName, modelService, mustProperties, allowed
             const newItem = mustProperties.reduce((prev, current) => ({...prev, [current]:req.body[current]}), {});   
             const savedItem = await modelService.addItem(newItem);
             Logger.databaseResult(`added to ${modelName} -> ${JSON.stringify(savedItem)}`);
-            res.status(200).json({createdItemId:savedItem._id, message:SUCCESS_MESSAGES.POST(modelName)});\
+            res.status(200).json({createdItemId:savedItem._id, message:SUCCESS_MESSAGES.POST(modelName)});
 
         } catch (err){
             Logger.databaseError(`Faild to add to ${modelName} -> ${err?.message}`);
@@ -86,7 +86,7 @@ const GenericModelController = (modelName, modelService, mustProperties, allowed
      * 
      * @respond deleted item
      */
-    deleteSpecificItem(req, res){
+    async deleteSpecificItem(req, res){
         try{
             Logger.databaseQuery(`deleting ${req.params.id} from ${modelName}`);
             const deletedItem = await modelService.deleteSpecificItem(req.params.id);

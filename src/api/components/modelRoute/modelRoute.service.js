@@ -44,7 +44,7 @@ let modelRoutes;
  * @param {string} long 
  */
 module.exports.findRouteId = async (lat, long) => {
-    if(!lat || ! long || isNaN(lat) || isNaN(long)) return null;
+    if(!lat || !long || isNaN(lat) || isNaN(long)) return null;
     if(!modelRoutes) modelRoutes = await modelRouteService.getItems(); 
     for(const {_id, rectangle} of modelRoutes)
         if(module.exports.isPointInRectangle(rectangle, lat, long))

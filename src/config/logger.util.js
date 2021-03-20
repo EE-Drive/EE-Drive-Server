@@ -1,6 +1,6 @@
 
 const fs = require('fs');
-const {LOG_FILES_NAMES} = require('./global.constant');
+const {LOG_FILES_NAMES} = require('./global.constants');
 const {COLORS, STYLES} = require('./consoleStyle.constant');
 
 /**

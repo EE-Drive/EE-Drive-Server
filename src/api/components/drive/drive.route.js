@@ -1,12 +1,13 @@
 
 let router = require('express').Router();
 const genericModelRouter = require('../../../services/genericModelRouter');
-const driveController = require("./drive.controller");
-const carTypeController = require("../carType/carType.controller");
+const driveController = require('./drive.controller');
+const carTypeController = require('../carType/carType.controller');
+const attachRoutesToRawData = require('../../middleware/attachRoutesToRawData')
 
 router
     .route('/')
-    .post(driveController.addDriveMiddleware, carTypeController.addDriveToSpecificCarType);
+    .post(attachRoutesToRawData, driveController.addDriveMiddleware, carTypeController.addDriveToSpecificCarType);
     
 router
     .route('/:id')
