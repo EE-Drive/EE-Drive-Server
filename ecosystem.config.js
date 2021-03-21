@@ -3,7 +3,7 @@ module.exports = {
   apps : [{
     script: 'index.js',
     watch: '.',
-    ignore_watch: ["./src/data"]
+    ignore_watch: ["./src/data", "./logs"]
   }, {
     script: './service-worker/',
     watch: ['./service-worker']
