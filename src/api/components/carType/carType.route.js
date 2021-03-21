@@ -16,7 +16,7 @@ router
 router
     .route('/drive-csv/:id')
     .all(validateIdParamMiddleware)
-    .post(upload.single('driveDetails'), (req, res) => res.send('hey'), csvTranslator, driveController.addDriveMiddleware, carTypeController.addDriveToSpecificCarType);
+    .post(upload.single('driveDetails'), csvTranslator, (req, res) => res.send('hey'), driveController.addDriveMiddleware, carTypeController.addDriveToSpecificCarType);
 
 router = genericModelRouter(carTypeController, router);
 
