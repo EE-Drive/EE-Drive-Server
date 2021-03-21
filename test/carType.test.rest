@@ -3,10 +3,10 @@
 ######################## Target All ########################
 
 ### get all car types
-GET http://localHost:8080/api/car-type HTTP/1.1
+GET http://eedrive.cs.colman.ac.il/api/car-type HTTP/1.1
 
 ### add car type
-POST http://localHost:8080/api/car-type HTTP/1.1
+POST http://eedrive.cs.colman.ac.il/api/car-type HTTP/1.1
 content-type: application/json
 
 {
@@ -45,7 +45,7 @@ content-type: application/json
 }
 
 ### delete specific car type
-DELETE  http://localHost:8080/api/car-type/6019c55e9ab1697d0ce42b56 HTTP/1.1
+DELETE  http://eedrive.cs.colman.ac.il/api/car-type/604f56fb85f47496beedba2e HTTP/1.1
 
 ###
 POST http://localHost:8080/api/car-type/drive-csv/6019c6459ab1697d0ce42b5a

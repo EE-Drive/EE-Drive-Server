@@ -3,7 +3,7 @@
 ######################## Target All ########################
 
 ### get all drive routes
-GET http://localHost:8080/api/drive HTTP/1.1
+GET http://eedrive.cs.colman.ac.il/api/drive HTTP/1.1
 
 ### add drive route
 POST http://localHost:8080/api/drive HTTP/1.1
