@@ -21,7 +21,7 @@ carTypeController.addDriveToSpecificCarType = async (req, res) => {
         if(!req.driveId) throw new Error('Request must contain driveId');
         const updatedItem = await carTypeService.addDriveToSpecificCarType(req.params.id ?? req.body.carTypeId, req.driveId);
         Logger.databaseResult(`drive added successfuly`);
-        res.status(200).json({ updatedItem, message: SUCCESS_MESSAGES.POST('Drive')})
+        res.status(200).json({ driveId: req.driveId, updatedItem, message: SUCCESS_MESSAGES.POST('Drive')})
 
     } catch (error) { 
         Logger.databaseError(`Failed to add drive to ${req.params.id} -> ${error.message}`);

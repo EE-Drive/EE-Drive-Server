@@ -11,7 +11,7 @@ router
     
 router
     .route('/:id')
-    .post(driveController.addRouteRawData);
+    .post(attachRoutesToRawData, driveController.addRouteRawData);
 
 router = genericModelRouter(driveController, router);
 
