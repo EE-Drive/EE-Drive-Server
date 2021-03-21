@@ -28,7 +28,7 @@ const logger = {
      */
     databaseResult(result){
         appendToFile(LOG_FILES_NAMES.DATABASE, `DATABASE RESULT -> ${result} in ${getTimeStamp()}`);
-        printToConsole(COLORS.blue(STYLES.bold('DATABASE RESULT')), `-> ${result}`);
+        printToConsole(COLORS.blue(STYLES.bold('DATABASE RESULT')), `-> ${result.substring(0,250)}`);
     },
 
     /**
@@ -39,7 +39,7 @@ const logger = {
      */
     databaseError(message){
         appendToFile(LOG_FILES_NAMES.ERRORS, `DATABASE ERROR -> ${message} in ${getTimeStamp()}`);
-        printToConsole(COLORS.red(STYLES.bold('DATABASE ERROR')), `-> ${message}`);
+        printToConsole(COLORS.red(STYLES.bold('DATABASE ERROR')), `-> ${message.substring(0,250)}`);
     },
 
     /**
@@ -50,7 +50,7 @@ const logger = {
      */
     error(message){
         appendToFile(LOG_FILES_NAMES.ERRORS, `ERROR -> ${message} in ${getTimeStamp()}`);
-        printToConsole(COLORS.red(STYLES.bold('ERROR')), `-> ${message}`);
+        printToConsole(COLORS.red(STYLES.bold('ERROR')), `-> ${message.substring(0,250)}`);
     },
 
     /**
@@ -61,7 +61,7 @@ const logger = {
      */
     warning(message){
         appendToFile(LOG_FILES_NAMES.ERRORS, `WARNING -> ${message} in ${getTimeStamp()}`);
-        printToConsole(COLORS.yellow(STYLES.bold('ERROR')), `-> ${message}`);
+        printToConsole(COLORS.yellow(STYLES.bold('ERROR')), `-> ${message.substring(0,250)}`);
     },
 
     /**
@@ -72,7 +72,7 @@ const logger = {
      */
     info(message){
         appendToFile(LOG_FILES_NAMES.INFO, `INFO -> ${message} in ${getTimeStamp()}`);
-        printToConsole(COLORS.cyan(STYLES.bold('INFO')), `-> ${message}`);
+        printToConsole(COLORS.cyan(STYLES.bold('INFO')), `-> ${message.substring(0,250)}`);
     }, 
 
 };
