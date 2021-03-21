@@ -17,7 +17,7 @@ const logger = {
      */
     databaseQuery(query){
         appendToFile(LOG_FILES_NAMES.DATABASE, `DATABASE QUERY -> ${query} in ${getTimeStamp()}`);
-        printToConsole(COLORS.green(STYLES.bold('DATABASE QUERY')), `-> ${query}`);
+        printToConsole(COLORS.green(STYLES.bold('DATABASE QUERY')), `-> ${query.substring(0,250)}`);
     },
 
     /**
