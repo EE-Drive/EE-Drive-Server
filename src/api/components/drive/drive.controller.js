@@ -6,7 +6,7 @@ const {SUCCESS_MESSAGES, ERROR_MESSAGES} = require('../../../services/messages.u
 const Logger = require('../../../config/logger.util');
 
 const MODEL_NAME = 'Drive';
-const mustProperties = ['carTypeId', 'driveRawData'];
+const mustProperties = ['carTypeId', 'driveRawData', 'driverAssist'];
 const allowedPropertiesToUpdate = ['driveRawData'];
 const driveController = GenericModelController(MODEL_NAME, driveService, mustProperties, allowedPropertiesToUpdate); 
 
@@ -34,7 +34,6 @@ driveController.addRouteRawData = async (req, res) => {
   try {
     Logger.databaseQuery(`Adding raw data to ${req.params.id} drive -> ${JSON.stringify(req.body)}`);
     validateObjectKeys(allowedPropertiesToUpdate, req.body);
-    validateObjectKeys(["routeID", "rawData"], req.body.driveRawData);
     const updatedItem = await driveService.addRouteRawData(req.params.id, req.body.driveRawData);
     Logger.databaseResult(`drive ${req.params.id} updated successfuly`);
     res.status(200).json({ updatedItem, message: SUCCESS_MESSAGES.POST(MODEL_NAME)});

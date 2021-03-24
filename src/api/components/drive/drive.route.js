@@ -4,6 +4,7 @@ const genericModelRouter = require('../../../services/genericModelRouter');
 const driveController = require('./drive.controller');
 const carTypeController = require('../carType/carType.controller');
 const attachRoutesToRawData = require('../../middleware/attachRoutesToRawData')
+const addRawData = require('../../middleware/addRawData')
 
 router
     .route('/')
@@ -11,7 +12,7 @@ router
     
 router
     .route('/:id')
-    .post(driveController.addRouteRawData);
+    .post(addRawData, attachRoutesToRawData, driveController.addRouteRawData);
 
 router = genericModelRouter(driveController, router);
 
