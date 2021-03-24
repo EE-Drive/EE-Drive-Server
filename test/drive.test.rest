@@ -6,18 +6,33 @@
 GET http://localHost:8080/api/drive HTTP/1.1
 
 ### add drive route
-POST http://localHost:8080/api/drive HTTP/1.1
+POST http://eedrive.cs.colman.ac.il/api/drive/ HTTP/1.1
 content-type: application/json
 
 {
-    "carTypeId": "6019c55e9ab1697d0ce42b56",
-    "driveRawData": [
-      {
-        "routeID": "5ff8e7412049ec4e8cfaf29b",
-        "rawData": [
-          {"lat": "355.43453", "long": "456.43453", "fuelCon": "6.42356", "speed": "92"}
-        ]
-      }
+  "carTypeId":"6059f2410799b82dc9dfcde4",
+  "timeAndDate":"2021-03-16-23-26-03",
+  "driverAssist":false,
+  "carType":{"brand":"Mazda", "model":"Three", "year":"2004"},
+  "driveRawData":[
+    {
+      "lat":"34.7667074",
+      "lang":"0.06471659081139003",
+      "fuelCons":[],
+      "speeds":[]
+    },
+    {
+      "lat":"34.7667179",
+      "lang":"0.04102660471122144",
+      "fuelCons":[5],
+      "speeds":[5]
+    }, 
+    {
+      "lat":"34.7667156",
+      "lang":"0.008169966365734305",
+      "fuelCons":["5"],
+      "speeds":["5"]
+    }
     ]
 }
 

@@ -5,6 +5,8 @@ const schemaTypes = require("../../../config/schemaTypes.constants");
 const modelSchema = new mongoose.Schema(
   {
     carTypeId: { type: mongoose.Schema.ObjectId, ref: "CarType" },
+    isProccesed: schemaTypes.nonRequiredBoolean,
+    driverAssist: schemaTypes.nonRequiredBoolean,
     driveRawData: [
       {
         routeID: { type: mongoose.Schema.ObjectId, ref: "ModelRoute" },

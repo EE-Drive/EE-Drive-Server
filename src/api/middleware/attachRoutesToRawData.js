@@ -12,8 +12,9 @@ module.exports = async (req, res, next)=> {
         const lat = dataItem.lat;
         const long = dataItem.long;
         const routeId = await findRouteId(lat, long);
+        console.log(routeId);
         if(!routeId) continue;
-        if(routeId in temp) temp[routeId] = [];
+        if(!temp[routeId]) temp[routeId] = [];
         temp[routeId].push(dataItem);
     }
     const formatedRawData = Object.keys(temp).map( routeId => ({routeID: routeId, rawData: temp[routeId]}));

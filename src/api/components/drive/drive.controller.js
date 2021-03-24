@@ -6,7 +6,7 @@ const {SUCCESS_MESSAGES, ERROR_MESSAGES} = require('../../../services/messages.u
 const Logger = require('../../../config/logger.util');
 
 const MODEL_NAME = 'Drive';
-const mustProperties = ['carTypeId', 'driveRawData'];
+const mustProperties = ['carTypeId', 'driveRawData', 'driverAssist'];
 const allowedPropertiesToUpdate = ['driveRawData'];
 const driveController = GenericModelController(MODEL_NAME, driveService, mustProperties, allowedPropertiesToUpdate); 
 

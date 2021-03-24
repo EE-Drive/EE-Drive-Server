@@ -79,7 +79,7 @@ module.exports.requiredBoolean = { type: Boolean, required: true}
 /**
  * Boolean with no restrictions.
  */
-module.exports.nonRequiredBoolean = {type: Boolean}
+module.exports.nonRequiredBoolean = {type: Boolean, default: false}
 
 // -----------------------------------------------------------------------------------------------
 // ------------------------------------------- Custom -------------------------------------------
