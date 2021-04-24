@@ -10,13 +10,8 @@ const modelRouteService = GenericModelService(ModelRouteModel);
  * 
  * @param {object} newItem 
  */
-modelRouteService.addItem = (newItem) => {
-    const newRoute = {
-        ...newItem,
-        rectangle: buildRectangle(newItem.routeStartingPoint,newItem.routeEndingPoint)
-    };
-    return new ModelRouteModel(newRoute).save();
-};
+modelRouteService.addItem = (newItem) => 
+    new ModelRouteModel(newItem).save();
 
 module.exports = modelRouteService;
 
@@ -28,12 +23,25 @@ module.exports = modelRouteService;
  * @param {string} lat 
  * @param {string} long 
  */
-module.exports.isPointInRectangle = (rectangle, lat, long) => {
-    if(lat < rectangle.bL.lat || lat > rectangle.tR.lat)
-        return false;
-    if(long < rectangle.bL.long || long > rectangle.tR.long)
-        return false;
-    return true;
+module.exports.isPointInRectangle = ({bL: {lat: Ax, long: Ay}, bR: {lat: Dx, long: Dy},
+     tL: {lat: Bx, long: By}, tR: {lat: Cx, long: Cy}}, Px, Py) => {
+
+    const calculateTriangleAreaSum = (Ax, Ay, Bx, By, Cx, Cy) => 
+        Math.abs((Bx*Ay - Ax*By) + (Cx*By - Bx*Cy) + (Ax*Cy - Cx*Ay)) / 2;
+
+    const calculateRectangleAreaSum = (Ax, Ay, Bx, By, Dx, Dy) => {
+        const width = Math.sqrt(Math.pow((Ax - Bx) ,2) + Math.pow((Ay - By) ,2));
+        const height = Math.sqrt(Math.pow((Ax - Dx) ,2) + Math.pow((Ay - Dy) ,2));
+        return (width * height);
+    }
+
+    const APDSum = calculateTriangleAreaSum(Ax, Ay, Px, Py, Dx, Dy);
+    const DPCSum = calculateTriangleAreaSum(Dx, Dy, Px, Py, Cx, Cy);
+    const CPBSum = calculateTriangleAreaSum(Cx, Cy, Px, Py, Bx, By);
+    const PBASum = calculateTriangleAreaSum(Px, Py, Bx, By, Ax, Ay);
+    const rectangleSum = calculateRectangleAreaSum(Ax, Ay, Bx, By, Dx, Dy);
+    
+    return (APDSum + DPCSum + CPBSum + PBASum) <= rectangleSum;
 };
 
 let modelRoutes;
@@ -46,9 +54,13 @@ let modelRoutes;
 module.exports.findRouteId = async (lat, long) => {
     if(!lat || !long || isNaN(lat) || isNaN(long)) return null;
     if(!modelRoutes) modelRoutes = await modelRouteService.getItems(); 
-    for(const {_id, rectangle} of modelRoutes)
-        if(module.exports.isPointInRectangle(rectangle, lat, long))
-            return _id;
+    
+    for(const route of modelRoutes){
+        const {bL, bR, tL, tR} = route;
+        if(module.exports.isPointInRectangle({bL, bR, tL, tR}, lat, long))
+            return route._id;
+    }
+        
     return null;
 };
 

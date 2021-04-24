@@ -12,7 +12,6 @@ module.exports = async (req, res, next)=> {
         const lat = dataItem.lat;
         const long = dataItem.long;
         const routeId = await findRouteId(lat, long);
-        console.log(routeId);
         if(!routeId) continue;
         if(!temp[routeId]) temp[routeId] = [];
         temp[routeId].push(dataItem);

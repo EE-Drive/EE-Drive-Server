@@ -15,6 +15,16 @@ content-type: application/json
     "year": "2018"
 }
 
+### add car type
+POST http://localhost:8080/api/car-type HTTP/1.1
+content-type: application/json
+
+{
+    "companyName": "tempCompanyName",
+    "brandName": "tempBrandName",
+    "year": "2018"
+}
+
 ###################### Target Specific #####################
 
 ### get specific car type
