@@ -38,7 +38,7 @@ const GenericModelController = (modelName, modelService, mustProperties, allowed
             res.status(200).json({createdItemId:savedItem._id, message:SUCCESS_MESSAGES.POST(modelName)});
 
         } catch (err){
-            Logger.databaseError(`Faild to add to ${modelName} -> ${err?.message}`);
+            Logger.databaseError(`Failed to add to ${modelName} -> ${err?.message}`);
             res.status(400).json({ message: ERROR_MESSAGES.POST(modelName)});
         }
     },

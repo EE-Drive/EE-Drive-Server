@@ -1,6 +1,7 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 const apiRouter = require('./routes');
 const {ROUTES} = require('../config/global.constants');
@@ -8,7 +9,11 @@ const {ROUTES} = require('../config/global.constants');
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.set('view engine', 'ejs');
 app.use(ROUTES.API, apiRouter);
+app.get('/add', (req,res) => res.render('index'));
 
 const connection = mongoose.connection;
 connection.once('open', () => console.log('MongoDB db connection successfully established'));

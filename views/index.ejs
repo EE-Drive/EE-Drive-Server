@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .flex-center-center {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .input-group {
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex-center-center">
+        <form action='/api/model-route/add' method="POST">
+            <fieldset class='input-group'>
+                <legend>From</legend>
+                <input placeholder="lat" name='fromLat' id='fromLat' />
+                <input placeholder="Long" name='fromLong'/>
+            </fieldset>
+            <fieldset class='input-group'>
+                <legend>To</legend>
+                <input placeholder="lat" name='toLat'/>
+                <input placeholder="Long" name='toLong' />
+            </fieldset>
+            <button type='submit'>Add Model Route</button>
+        </form>
+    </div>
+</body>
+</html>
