@@ -15,13 +15,20 @@ const driveController = GenericModelController(MODEL_NAME, driveService, mustPro
  * and passing its id in the req.driveId paramter.
  */
 driveController.addDriveMiddleware = async (req, res, next) => {
-  Logger.databaseQuery(`Adding drive to drives -> ${JSON.stringify(req.body)}`);
-  validateKeysInObject(mustProperties, req.body);
-  const newItem = mustProperties.reduce((prev, current) => ({...prev, [current]:req.body[current]}), {});   
-  const savedItem = await driveService.addItem(newItem);
-  Logger.databaseResult(`drive added successfuly -> ${JSON.stringify(savedItem)}`);
-  req.driveId = savedItem._id;
-  next();
+  try{
+    Logger.databaseQuery(`Adding drive to drives -> ${JSON.stringify(req.body)}`);
+    validateKeysInObject(mustProperties, req.body);
+    const newItem = mustProperties.reduce((prev, current) => ({...prev, [current]:req.body[current]}), {});   
+    const savedItem = await driveService.addItem(newItem);
+    Logger.databaseResult(`drive added successfully -> ${JSON.stringify(savedItem)}`);
+    res.status(200).json({ createdItemId:savedItem._id, message: SUCCESS_MESSAGES.POST('Drive')})
+
+  } catch (error) { 
+      Logger.databaseError(`Failed to add drive -> ${error.message}`);
+      res.status(400).json({ message: ERROR_MESSAGES.POST(MODEL_NAME)}); 
+  }
+  // req.driveId = savedItem._id;
+  // next();
 };
 
 /**

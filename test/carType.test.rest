@@ -55,7 +55,7 @@ content-type: application/json
 }
 
 ### delete specific car type
-DELETE  http://localHost:8080/api/car-type/6019c55e9ab1697d0ce42b56 HTTP/1.1
+DELETE  http://eedrive.cs.colman.ac.il/api/car-type/60851ca4e9bd0ae79feb2b14 HTTP/1.1
 
 ###
 POST http://localHost:8080/api/car-type/drive-csv/6019c6459ab1697d0ce42b5a

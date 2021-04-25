@@ -11,33 +11,33 @@ POST http://localhost:8080/api/drive/ HTTP/1.1
 content-type: application/json
 
 {
-  "carTypeId":"608421466cb4f7257854f460",
+  "carTypeId":"60851d924e84533e88a69083",
   "timeAndDate":"2021-03-16-23-26-03",
   "driverAssist":false,
   "driveRawData":[
     {
       "lat":"31.806492808102334",
       "long":"34.693973722527836",
-      "fuelCons":[],
-      "speeds":[]
+      "fuelCons":[33,4,5,6,7,8,9,9],
+      "speeds":[3,4,5,6,7,8,9,9]
     },
     {
       "lat":"31.826502750899788",
       "long":"34.69955733679958",
-      "fuelCons":[5],
-      "speeds":[5]
+      "fuelCons":[3,4,5,6,7,8,9,9],
+      "speeds":[3,4,5,6,7,8,9,9]
     }, 
     {
       "lat":"31.87275108620717",
       "long":"34.71805355436277",
-      "fuelCons":["5"],
-      "speeds":["5"]
+      "fuelCons":[3,4,5,6,7,8,9,9],
+      "speeds":[3,4,5,6,7,8,9,9]
     },
     {
       "lat":"31.93939241066041",
       "long":"34.74168621430044",
-      "fuelCons":["5"],
-      "speeds":["5"]
+      "fuelCons":[3,4,5,6,7,8,9,9],
+      "speeds":[3,4,5,6,7,8,9,9]
     }
     ]
 }
