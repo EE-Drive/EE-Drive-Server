@@ -7,19 +7,19 @@ GET http://localHost:8080/api/drive HTTP/1.1
 
 ### add drive route
 
-POST http://localhost:8080/api/drive/ HTTP/1.1
+POST http://eedrive.cs.colman.ac.il/api/drive/ HTTP/1.1
 content-type: application/json
 
 {
-  "carTypeId":"60851d924e84533e88a69083",
+  "carTypeId":"60868d27754bdaec37bbffb4",
   "timeAndDate":"2021-03-16-23-26-03",
   "driverAssist":false,
   "driveRawData":[
     {
-      "lat":"31.806492808102334",
-      "long":"34.693973722527836",
       "fuelCons":[33,4,5,6,7,8,9,9],
-      "speeds":[3,4,5,6,7,8,9,9]
+      "speeds":[3,4,5,6,7,8,9,9],
+      "lat":"31.806492808102334",
+      "long":"34.693973722527836"
     },
     {
       "lat":"31.826502750899788",
@@ -30,12 +30,18 @@ content-type: application/json
     {
       "lat":"31.87275108620717",
       "long":"34.71805355436277",
-      "fuelCons":[3,4,5,6,7,8,9,9],
-      "speeds":[3,4,5,6,7,8,9,9]
+      "fuelCons":[1,4,5,6,7,8,9,9],
+      "speeds":[1,4,5,6,7,8,9,9]
     },
     {
       "lat":"31.93939241066041",
       "long":"34.74168621430044",
+      "fuelCons":[3,4,5,6,7,8,9,9],
+      "speeds":[3,4,5,6,7,8,9,9]
+    },
+    {
+      "lat":"1",
+      "long":"2",
       "fuelCons":[3,4,5,6,7,8,9,9],
       "speeds":[3,4,5,6,7,8,9,9]
     }
