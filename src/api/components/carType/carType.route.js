@@ -11,12 +11,12 @@ const upload = multer({ dest: 'src/data/csvFiles/' });
 
 router
     .route('/:id')
-    .post(driveController.addDriveMiddleware, carTypeController.addDriveToSpecificCarType);
+    .post(driveController.addDriveMiddleware);
 
 router
     .route('/drive-csv/:id')
     .all(validateIdParamMiddleware)
-    .post(upload.single('driveDetails'), csvTranslator, driveController.addDriveMiddleware, carTypeController.addDriveToSpecificCarType);
+    .post(upload.single('driveDetails'), csvTranslator, driveController.addDriveMiddleware);
 
 router = genericModelRouter(carTypeController, router);
 

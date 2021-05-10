@@ -7,7 +7,7 @@ const modelSchema = new mongoose.Schema({
     brandName: schemaTypes.requiredMediumString,
     year: schemaTypes.requiredSmallString,
     engineDisplacement: schemaTypes.nonRequiredSmallString,
-    drivesID: [{type: mongoose.Schema.ObjectId, ref:'Drive'}],
+    //drivesID: [{type: mongoose.Schema.ObjectId, ref:'Drive'}],
     modelsID: [{type: mongoose.Schema.ObjectId, ref:'OptimalModel'}],
 },{ timestamps:true });
 

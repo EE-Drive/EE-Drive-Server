@@ -6,32 +6,44 @@
 GET http://eedrive.cs.colman.ac.il/api/drive HTTP/1.1
 
 ### add drive route
+
 POST http://eedrive.cs.colman.ac.il/api/drive/ HTTP/1.1
 content-type: application/json
 
 {
-  "carTypeId":"6059f2410799b82dc9dfcde4",
+  "carTypeId":"60868d27754bdaec37bbffb4",
   "timeAndDate":"2021-03-16-23-26-03",
   "driverAssist":false,
-  "carType":{"brand":"Mazda", "model":"Three", "year":"2004"},
   "driveRawData":[
     {
-      "lat":"34.7667074",
-      "lang":"0.06471659081139003",
-      "fuelCons":[],
-      "speeds":[]
+      "fuelCons":[33,4,5,6,7,8,9,9],
+      "speeds":[3,4,5,6,7,8,9,9],
+      "lat":"31.806492808102334",
+      "long":"34.693973722527836"
     },
     {
-      "lat":"34.7667179",
-      "lang":"0.04102660471122144",
-      "fuelCons":[5],
-      "speeds":[5]
+      "lat":"31.826502750899788",
+      "long":"34.69955733679958",
+      "fuelCons":[3,4,5,6,7,8,9,9],
+      "speeds":[3,4,5,6,7,8,9,9]
     }, 
     {
-      "lat":"34.7667156",
-      "lang":"0.008169966365734305",
-      "fuelCons":["5"],
-      "speeds":["5"]
+      "lat":"31.87275108620717",
+      "long":"34.71805355436277",
+      "fuelCons":[1,4,5,6,7,8,9,9],
+      "speeds":[1,4,5,6,7,8,9,9]
+    },
+    {
+      "lat":"31.93939241066041",
+      "long":"34.74168621430044",
+      "fuelCons":[3,4,5,6,7,8,9,9],
+      "speeds":[3,4,5,6,7,8,9,9]
+    },
+    {
+      "lat":"1",
+      "long":"2",
+      "fuelCons":[3,4,5,6,7,8,9,9],
+      "speeds":[3,4,5,6,7,8,9,9]
     }
     ]
 }
@@ -39,13 +51,13 @@ content-type: application/json
 ###################### Target Specific #####################
 
 ### delete specific car type
-DELETE  http://localHost:8080/api/drive/6019ce2672fb079bfc6debf9 HTTP/1.1
+DELETE  http://localHost:8080/api/drive/6084412073789f47442cbf60 HTTP/1.1
 
 ### get specific drive route
 GET http://localHost:8080/api/drive/60187d0c4bcc8a7f5c62fe8f HTTP/1.1
 
 ### update specific drive route
-PATCH http://localHost:8080/api/drive/60187d0c4bcc8a7f5c62fe8f HTTP/1.1
+PATCH http://localHost:8080/api/drive/608421e06cb4f7257854f461 HTTP/1.1
 content-type: application/json
 
 {

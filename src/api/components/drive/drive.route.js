@@ -8,7 +8,7 @@ const addRawData = require('../../middleware/addRawData')
 
 router
     .route('/')
-    .post(attachRoutesToRawData, driveController.addDriveMiddleware, carTypeController.addDriveToSpecificCarType);
+    .post(addRawData, attachRoutesToRawData, driveController.addDriveMiddleware);
     
 router
     .route('/:id')

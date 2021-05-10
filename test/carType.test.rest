@@ -15,6 +15,16 @@ content-type: application/json
     "year": "2018"
 }
 
+### add car type
+POST http://localhost:8080/api/car-type HTTP/1.1
+content-type: application/json
+
+{
+    "companyName": "tempCompanyName",
+    "brandName": "tempBrandName",
+    "year": "2018"
+}
+
 ###################### Target Specific #####################
 
 ### get specific car type
@@ -45,7 +55,7 @@ content-type: application/json
 }
 
 ### delete specific car type
-DELETE  http://eedrive.cs.colman.ac.il/api/car-type/604f56fb85f47496beedba2e HTTP/1.1
+DELETE  http://eedrive.cs.colman.ac.il/api/car-type/60851ca4e9bd0ae79feb2b14 HTTP/1.1
 
 ###
 POST http://localHost:8080/api/car-type/drive-csv/6019c6459ab1697d0ce42b5a
