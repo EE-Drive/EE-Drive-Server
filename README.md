@@ -61,22 +61,213 @@
 
 ### API Endpoints
 
-#### /api/routeModel
+#### car type
 
-- GET - server receives on the body of the request: car type object and Geo samples; return the entire model of the route.
-- POST - server receives raw data, adds it to the DB; returns if succeeded or not.
+- GET api/car-type => fetch all car types from the db.
+- POST api/car-type => add a car type to the db.
 
-#### /api/routeModel/:routeOptimalModelId
+```
+{
+  "companyName": "Comp",
+  "bandName": "brand",
+  "year": "2014",
+  "engineDisplacement": "1200" //optional
+}
+```
 
-- GET - server receives on the body of the request: model timestamp and from the endpoint the optimal model ID; returns the model if it was updated.
+- GET api/car-type/:id => get specific car type by a given id.
+- POST api/car-type/:id => add a drive to a specific car type by a given id.
 
-### Built With
+```
+{
+  "carTypeId": "601877ea72ac659498aab9ed",
+    "driveRawData": [
+      {
+        "routeID": "5ff8e7412049ec4e8cfaf29b",
+        "rawData": [
+          {"lat": "35.43453", "long": "46.43453", "fuelCon": "6.42356", "speed": "92"}
+        ]
+      }
+    ],
+  "driverAssist": false
+}
+```
 
-- []()
-- []()
-- []()
+- PATCH api/car-type/:id => update specific car type by a given car type id. Can have in the body any number of the following keys: companyName, bandName, year, engineDisplacement.
 
-<!-- GETTING STARTED -->
+```
+{
+    "companyName": "change"
+}
+```
+
+- DELETE api/car-type/:id => delete specific car type by a given car type id.
+- POST api/drive-csv/:id => add drive from csv (used for the old application data and is not recommended).
+
+#### drive
+
+- GET api/drive => fetch all drives from the db.
+- POST api/drive => add a drive to a specific car type.
+
+```
+{
+  "carTypeId":"60868d27754bdaec37bbffb4",
+  "timeAndDate":"2021-03-16-23-26-03",
+  "driverAssist":false,
+  "driveRawData":[
+    {
+      "fuelCons":[33,4,5,6,7,8,9,9],
+      "speeds":[3,4,5,6,7,8,9,9],
+      "lat":"31.806492808102334",
+      "long":"34.693973722527836"
+    },
+    {
+      "lat":"31.826502750899788",
+      "long":"34.69955733679958",
+      "fuelCons":[3,4,5,6,7,8,9,9],
+      "speeds":[3,4,5,6,7,8,9,9]
+    },
+    {
+      "lat":"31.87275108620717",
+      "long":"34.71805355436277",
+      "fuelCons":[1,4,5,6,7,8,9,9],
+      "speeds":[1,4,5,6,7,8,9,9]
+    },
+    {
+      "lat":"31.93939241066041",
+      "long":"34.74168621430044",
+      "fuelCons":[3,4,5,6,7,8,9,9],
+      "speeds":[3,4,5,6,7,8,9,9]
+    },
+    {
+      "lat":"1",
+      "long":"2",
+      "fuelCons":[3,4,5,6,7,8,9,9],
+      "speeds":[3,4,5,6,7,8,9,9]
+    }
+    ]
+}
+```
+
+- GET api/drive/:id => get specific drive.
+- POST api/drive/:id => add raw data to an existing drive.
+
+```
+{
+  "driveRawData": [
+    {
+      "fuelCons":[33,4,5,6,7,8,9,9],
+      "speeds":[3,4,5,6,7,8,9,9],
+      "lat":"31.806492808102334",
+      "long":"34.693973722527836"
+    },
+    {
+      "lat":"31.826502750899788",
+      "long":"34.69955733679958",
+      "fuelCons":[3,4,5,6,7,8,9,9],
+      "speeds":[3,4,5,6,7,8,9,9]
+    }
+  ]
+}
+```
+
+- PATCH api/drive/:id => update specific drive. Will change drive data by a given drive id.
+
+```
+{
+    "driveRawData": "change"
+}
+```
+
+- DELETE api/drive/:id => delete specific drive.
+
+#### model route
+
+- GET api/model-route => fetch all car types from the db.
+- POST api/model-route => add a model-routes to the db.
+
+```
+{
+  "bL":{"lat": "", "long": ""},
+  "bR":{"lat": "", "long": ""},
+  "tL":{"lat": "", "long": ""},
+  "tR":{"lat": "", "long": ""},
+}
+```
+
+- GET api/model-route/:id => get specific model-route.
+- PATCH api/model-route/:id => update specific model-route.
+
+```
+{
+  "routeStartingPoint": {"lat": "32.43453", "long": "46.43453"}
+}
+```
+
+- DELETE api/model-route/:id => delete specific model-route.
+- POST api/model-route/add => add model route from a form.
+
+```
+{
+  "bLLat": "",
+  "bLLong": "",
+  "bRLat": "",
+  "bRLong": "",
+  "tLLat": "",
+  "tLLong": "",
+  "tRLat": "",
+  "tRLong": ""
+}
+```
+
+#### optimal model
+
+- GET api/optimal-model => fetch all optimal-models from the db.
+- POST api/optimal-model => add a optimal-model to the db.
+
+```
+{
+  "routeID": "5ff8e7412049ec4e8cfaf29b",
+  "vertices": [
+    {
+      "vertexId": "5ff8e7412049ec4e8cfaf29b",
+      "lat": "35.43453",
+      "long": "46.43453",
+      "speed": "120"
+    },
+    {
+      "vertexId": "5ff7e7413049ec4e9cfab39f",
+      "lat": "38.43453",
+      "long": "47.43453",
+      "speed": "110"
+    }
+  ],
+  "edges": [
+    {
+      "vertexA": "5ff8e7412049ec4e8cfaf29b",
+      "vertexB": "5ff7e7413049ec4e9cfab39f",
+      "fuelCon": "6.48235"
+    }
+  ]
+}
+```
+
+- GET api/optimal-model/:id => get specific optimal-model.
+- PATCH api/optimal-model/:id => update specific optimal-model.
+
+```
+{
+  "edges": [
+    {
+      "vertexA": "5ff7e7413049ec4e9cfab39f",
+      "vertexB": "5ff8e7412049ec4e8cfaf29b",
+      "fuelCon": "6.48235"
+    }
+  ]
+}
+```
+
+- DELETE api/optimal-model/:id => delete specific optimal-model.
 
 ## Getting Started
 
@@ -105,44 +296,6 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 
 ## Usage
-
-<!-- ROADMAP -->
-
-## Roadmap
-
-### car type
-  - GET api/car-type => fetch all car types from the db.
-  - POST api/car-type => add a car type to the db.
-  - GET api/car-type/:id => get specific car type.
-  - POST api/car-type/:id => add a drive to a specific car type.
-  - PATCH api/car-type/:id => update specific car type.
-  - DELETE api/car-type/:id => delete specific car type.
-  - POST api/drive-csv/:id => add drive from csv.
- 
-### drive
-  - GET api/drive => fetch all drives from the db.
-  - POST api/drive => add a drive to a specific car type.
-  - GET api/drive/:id => get specific drive.
-  - POST api/drive/:id => add raw data to an existing drive.
-  - PATCH api/drive/:id => update specific drive.
-  - DELETE api/drive/:id => delete specific drive.
-   
-### model route
-  - GET api/model-route => fetch all car types from the db.
-  - POST api/model-route => add a model-routes to the db.
-  - GET api/model-route/:id => get specific model-route.
-  - PATCH api/model-route/:id => update specific model-route.
-  - DELETE api/model-route/:id => delete specific model-route.
-  
-### optimal model
-  - GET api/optimal-model => fetch all optimal-models from the db.
-  - POST api/optimal-model => add a optimal-model to the db.
-  - GET api/optimal-model/:id => get specific optimal-model.
-  - PATCH api/optimal-model/:id => update specific optimal-model.
-  - DELETE api/optimal-model/:id => delete specific optimal-model.
- 
-
-See the [open issues](https://github.com/EE-Drive/EE-Drive-Server/issues) for a list of proposed features (and known issues).
 
 <!-- CONTRIBUTING -->
 
