@@ -3,7 +3,7 @@
 ######################## Target All ########################
 
 ### get all drive routes
-GET http://eedrive.cs.colman.ac.il/api/drive HTTP/1.1
+GET http://localhost:8080/api/drive HTTP/1.1
 
 ### add drive route
 
@@ -51,16 +51,16 @@ content-type: application/json
 ###################### Target Specific #####################
 
 ### delete specific car type
-DELETE  http://localHost:8080/api/drive/6084412073789f47442cbf60 HTTP/1.1
+DELETE  http://localHost:8080/api/drive/609e663ee6a6c23d10edb245 HTTP/1.1
 
-### get specific drive route
-GET http://localHost:8080/api/drive/60187d0c4bcc8a7f5c62fe8f HTTP/1.1
+###
+POST http://localHost:8080/api/car-type/drive-csv/60851d924e84533e88a69083
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
-### update specific drive route
-PATCH http://localHost:8080/api/drive/608421e06cb4f7257854f461 HTTP/1.1
-content-type: application/json
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="driveDetails"; filename="driveDetails.csv"
+Content-Type: text/csv
 
-{
-    "driveRawData": "change"
-}
+< ../DummyData/ashdod-to-rishon/drive1.csv
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
 

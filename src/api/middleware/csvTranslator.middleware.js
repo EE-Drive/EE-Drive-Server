@@ -33,7 +33,7 @@ module.exports = async (req, res, next)=> {
             const rawData = {};
             for( const csvRow of csvData ) await createDriveRawData(rawData, csvRow);
             const driveRawData = Object.keys(rawData).map(key => ({routeID: key, rawData: rawData[key]}));
-            req.body = {carTypeId, driveRawData};
+            req.body = {carTypeId, driverAssist: false, driveRawData};
             next();
         });
 };

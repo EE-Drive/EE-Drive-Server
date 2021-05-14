@@ -6,7 +6,7 @@ const right = i => (i + 1) << 1;
 
 class PriorityQueue {
   
-    constructor(comparator = (a, b) => a > b) {
+  constructor(comparator = (a, b) => a > b) {
     this._heap = [];
     this._comparator = comparator;
   }
@@ -29,10 +29,11 @@ class PriorityQueue {
   }
 
   push(...values) {
-    values.forEach(value => {
-      this._heap.push(value);
+    const vals = Array.from(values);
+    for(let i = 0; i<vals.length; i++){
+      this._heap.push(vals[i]);
       this._siftUp();
-    });
+    };
     return this.size();
   }
 

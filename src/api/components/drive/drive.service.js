@@ -28,4 +28,34 @@ driveService.addItem = async newItem => {
 driveService.addRouteRawData = (driveId, routeRawData) =>
   driveModel.findByIdAndUpdate(driveId, { $push: { driveRawData: routeRawData }}, {new: true});
 
+const avg = arr => {
+  if(!Array.isArray(arr)) return arr;
+  else return arr.reduce((prev, current) => prev + Number(current), 0) / arr.length;
+}
+
+const extractData = (drives, routeID) => {
+  const data = [];
+  drives.forEach(drive => {
+      drive.driveRawData.forEach(driveRawData => {
+        if(driveRawData.routeID !== routeID) return;
+        driveRawData.rawData.forEach(routeRawData => {
+          data.push({...routeRawData, fuelCon: Number(avg(routeRawData.fuelCon)) ,speed: Number(avg(routeRawData.speed))})
+        })
+      })
+  });
+  return data;
+};
+
+driveService.getDrivesDataForSpecificRoute = routeID => 
+  driveModel.aggregate([
+    {$match: {'driveRawData.routeID': routeID}},
+    {$project: {
+        driveRawData: {$filter: {
+            input: '$driveRawData',
+            as: 'driveRawData',
+            cond: {$eq: ['$$driveRawData.routeID', routeID]}
+        }},
+    }}
+  ]).then(drives => extractData(drives, routeID))
+
 module.exports = driveService;

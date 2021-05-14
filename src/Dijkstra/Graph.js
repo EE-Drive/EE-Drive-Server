@@ -34,11 +34,11 @@ class Graph {
         const priorityQueue = new PriorityQueue((v1, v2) => v1.currentWeight > v2.currentWeight);
         const adjacencyMatrix = useTranspose ? this.adjacencyMatrixTranspose : this.adjacencyMatrix;
         source.currentWeight = 0;
-        this.vertexList.forEach(priorityQueue.push);
+        this.vertexList.forEach(vertex => priorityQueue.push(vertex));
         while(!priorityQueue.isEmpty()){
             const currentVertex = priorityQueue.pop();
             const neighborsList = useTranspose ? currentVertex.transposeNeighborsList : currentVertex.neighborsList;
-            neighborsList.forEach(neighbor => this._relax(currentVertex, neighbor, adjacencyMatrix[currentVertex.index][neighbor.index], priorityQueue.refresh));
+            neighborsList.forEach(neighbor => this._relax(currentVertex, neighbor, adjacencyMatrix[currentVertex.index][neighbor.index], priorityQueue.refresh.bind(priorityQueue)));
         }
     }
 

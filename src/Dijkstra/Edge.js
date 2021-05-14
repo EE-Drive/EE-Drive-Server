@@ -3,7 +3,7 @@ const Vertex = require("./Vertex");
 class Edge {
     constructor(from, to, weight) {
 
-        if(!(from instanceof Vertex) ||!(to instanceof Vertex) || isNan(weight))
+        if(!(from instanceof Vertex) ||!(to instanceof Vertex) || isNaN(weight))
             throw new Error('Edge must contain 2 vertacies and weight must be a valid number');
 
         this.from = from;

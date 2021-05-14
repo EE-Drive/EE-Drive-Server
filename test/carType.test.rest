@@ -3,7 +3,7 @@
 ######################## Target All ########################
 
 ### get all car types
-GET http://eedrive.cs.colman.ac.il/api/car-type HTTP/1.1
+GET http://localhost:8080/api/car-type HTTP/1.1
 
 ### add car type
 POST http://eedrive.cs.colman.ac.il/api/car-type HTTP/1.1
@@ -58,12 +58,12 @@ content-type: application/json
 DELETE  http://eedrive.cs.colman.ac.il/api/car-type/60851ca4e9bd0ae79feb2b14 HTTP/1.1
 
 ###
-POST http://localHost:8080/api/car-type/drive-csv/6019c6459ab1697d0ce42b5a
+POST http://localHost:8080/api/car-type/drive-csv/60851d924e84533e88a69083
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="driveDetails"; filename="driveDetails.csv"
 Content-Type: text/csv
 
-< ./drive-2019-12-26.csv
+< ./drive1.csv
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
