@@ -3,22 +3,11 @@ const schemaTypes = require("../../../config/schemaTypes.constants");
 
 const modelSchema = new mongoose.Schema(
   {
+    carTypeID: { type: mongoose.Schema.ObjectId, ref: "CarType" },
     routeID: { type: mongoose.Schema.ObjectId, ref: "ModelRoute" },
     lastUpdated: schemaTypes.nonRequiredMediumString,
-    vertices: [
-      {
-        vertexId: mongoose.Schema.ObjectId,
-        ...schemaTypes.landMark,
-        speed: [schemaTypes.nonRequiredNumber],
-      },
-    ],
-    edges: [
-      {
-        vertexA: mongoose.Schema.ObjectId,
-        vertexB: mongoose.Schema.ObjectId,
-        fuelCon: [schemaTypes.nonRequiredNumber],
-      },
-    ],
+    vertices: [{}],
+    edges: [{}],
   },
   { timestamps: true }
 );

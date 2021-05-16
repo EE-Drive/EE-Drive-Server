@@ -3,7 +3,7 @@ const GenericModelController = require('../../../services/genericModelController
 const optimalModelService = require('./optimalModel.service');
 
 const MODEL_NAME = 'Optimal Model';
-const mustProperties = ['routeID', 'vertices', 'edges'];
+const mustProperties = ['carTypeID', 'routeID', 'vertices', 'edges'];
 const allowedPropertiesToUpdate = ['vertices', 'edges'];
 const modelRouteController = GenericModelController(MODEL_NAME, optimalModelService, mustProperties, allowedPropertiesToUpdate); 
 

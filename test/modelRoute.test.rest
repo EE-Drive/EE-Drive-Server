@@ -22,7 +22,13 @@ content-type: application/json
 GET http://localHost:8080/api/model-route/6084407a73789f47442cbf5f HTTP/1.1
 
 ### get specific model route
-POST http://localHost:8080/api/model-route/createModel/6084407a73789f47442cbf5f HTTP/1.1
+POST http://localHost:8080/api/model-route/createModel HTTP/1.1
+content-type: application/json
+
+{
+    "routeID": "6084407a73789f47442cbf5f",
+    "carTypeID":"60851d924e84533e88a69083"
+}
 
 ### update specific model route
 PATCH http://localHost:8080/api/model-route/6018804c36613791e0fa80c1 HTTP/1.1

@@ -46,16 +46,19 @@ const extractData = (drives, routeID) => {
   return data;
 };
 
-driveService.getDrivesDataForSpecificRoute = routeID => 
-  driveModel.aggregate([
-    {$match: {'driveRawData.routeID': routeID}},
-    {$project: {
-        driveRawData: {$filter: {
-            input: '$driveRawData',
-            as: 'driveRawData',
-            cond: {$eq: ['$$driveRawData.routeID', routeID]}
-        }},
-    }}
-  ]).then(drives => extractData(drives, routeID))
+driveService.getDrivesDataForSpecificRoute = (routeID, carTypeId) => 
+  driveModel
+    .aggregate([
+      {$match: {'driveRawData.routeID': routeID}},
+      {$project: {
+          carTypeId,
+          driveRawData: {$filter: {
+              input: '$driveRawData',
+              as: 'driveRawData',
+              cond: {$eq: ['$$driveRawData.routeID', routeID]}
+          }},
+      }}])
+    .then(drives => drives.filter(drive => drive.carTypeId === carTypeId))
+    .then(drives => extractData(drives, routeID));
 
 module.exports = driveService;

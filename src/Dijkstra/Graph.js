@@ -31,22 +31,21 @@ class Graph {
     }
 
     dikstra(source = this.vertexList[0] ,useTranspose = false) {
-        const priorityQueue = new PriorityQueue((v1, v2) => v1.currentWeight > v2.currentWeight);
+        const priorityQueue = new PriorityQueue((v1, v2) => v2.currentWeight - v1.currentWeight);
         const adjacencyMatrix = useTranspose ? this.adjacencyMatrixTranspose : this.adjacencyMatrix;
         source.currentWeight = 0;
         this.vertexList.forEach(vertex => priorityQueue.push(vertex));
         while(!priorityQueue.isEmpty()){
             const currentVertex = priorityQueue.pop();
             const neighborsList = useTranspose ? currentVertex.transposeNeighborsList : currentVertex.neighborsList;
-            neighborsList.forEach(neighbor => this._relax(currentVertex, neighbor, adjacencyMatrix[currentVertex.index][neighbor.index], priorityQueue.refresh.bind(priorityQueue)));
+            neighborsList.forEach(neighbor => this._relax(currentVertex, neighbor, adjacencyMatrix[currentVertex.index][neighbor.index]));
         }
     }
 
-    _relax(vertex, neighbor, weight, onFinish) {
+    _relax(vertex, neighbor, weight) {
         if(neighbor.currentWeight  <= vertex.currentWeight + weight) return;
         neighbor.currentWeight = vertex.currentWeight + weight;
         neighbor.father = vertex;
-        onFinish();
     }
 }
 
