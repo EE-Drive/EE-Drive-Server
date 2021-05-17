@@ -10,17 +10,17 @@ class Vertex {
         this.long = long;
         this.speed = speed;
         this.currentWeight = Infinity;
-        this.father = null;
+        this.fatherIndex = null;
         this.neighborsList = [];
         this.transposeNeighborsList = [];
     }
 
-    addNeighbor(vertex){
-        this.neighborsList.push(vertex);
+    addNeighbor(vertexIndex){
+        this.neighborsList.push(vertexIndex);
     }
 
-    addTransposeNeighbor(vertex){
-        this.transposeNeighborsList.push(vertex);
+    addTransposeNeighbor(vertexIndex){
+        this.transposeNeighborsList.push(vertexIndex);
     }
 }
 

@@ -24,9 +24,9 @@ class Graph {
     }
 
     _buildGraph() {
-        this.edgeList.forEach( ({from, to, weight}) => {
-            this.adjacencyMatrix[from.index][to.index] = weight;
-            this.adjacencyMatrixTranspose[to.index][from.index] = weight;
+        this.edgeList.forEach( ({fromIndex, toIndex, weight}) => {
+            this.adjacencyMatrix[fromIndex][toIndex] = weight;
+            this.adjacencyMatrixTranspose[fromIndex][toIndex] = weight;
         });
     }
 
@@ -38,14 +38,14 @@ class Graph {
         while(!priorityQueue.isEmpty()){
             const currentVertex = priorityQueue.pop();
             const neighborsList = useTranspose ? currentVertex.transposeNeighborsList : currentVertex.neighborsList;
-            neighborsList.forEach(neighbor => this._relax(currentVertex, neighbor, adjacencyMatrix[currentVertex.index][neighbor.index]));
+            neighborsList.forEach(neighborIndex => this._relax(currentVertex, this.vertexList[neighborIndex], adjacencyMatrix[currentVertex.index][neighborIndex]));
         }
     }
 
     _relax(vertex, neighbor, weight) {
         if(neighbor.currentWeight  <= vertex.currentWeight + weight) return;
         neighbor.currentWeight = vertex.currentWeight + weight;
-        neighbor.father = vertex;
+        neighbor.father = vertex.index;
     }
 }
 

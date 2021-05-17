@@ -7,7 +7,6 @@ const axios = require('axios');
 const Vertex = require('../../../Dijkstra/Vertex');
 const Edge = require('../../../Dijkstra/Edge');
 const Graph = require('../../../Dijkstra/Graph');
-const CircularJSON = require('circular-json')
 
 const MODEL_NAME = 'Model Route';
 const mustProperties = ['bL', 'bR', 'tL', 'tR'];
@@ -39,6 +38,8 @@ const divideToClusters = model => model.reduce((prev, current, index) => {
 
 modelRouteController.createModelForRote = async (req, res) => {
     const {routeID, carTypeID} = req.body;
+    const current = await OptimalModelService.modelFromRouteID(routeID);
+    if(current) return res.json(current);
     const data = await driveService.getDrivesDataForSpecificRoute(routeID, carTypeID);
     const model = await axios.post('http://localhost:8000/items/', {rawdata: data}).then(res => res.data);
     const clusters = divideToClusters(model);
@@ -52,15 +53,18 @@ modelRouteController.createModelForRote = async (req, res) => {
     const target = new Vertex(vertexList.length,0, 0, 0);
     vertexList.push(target);
     clusters[clusters.length - 1].forEach(({vertex:v1, fuelCon:f1}) => edgeList.push(new Edge(v1, target, f1)));
+    
     const graph = new Graph(vertexList, edgeList);
     graph.dikstra(target, true);
+
     const savedItem = await OptimalModelService.addItem({
         carTypeID,
         routeID,
-        lastUpdated: new Date().getTime(),
+        lastUpdated: new Date().getTime(), 
         vertices: graph.vertexList,
         edges: graph.edgeList
     })
+    
     res.json(savedItem);
 };
 

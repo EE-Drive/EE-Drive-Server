@@ -6,11 +6,11 @@ class Edge {
         if(!(from instanceof Vertex) ||!(to instanceof Vertex) || isNaN(weight))
             throw new Error('Edge must contain 2 vertacies and weight must be a valid number');
 
-        this.from = from;
-        this.to = to;
+        this.fromIndex = from.index;
+        this.toIndex = to.index;
         this.weight = weight;
-        this.from.addNeighbor(to);
-        this.to.addTransposeNeighbor(from);
+        from.addNeighbor(this.toIndex);
+        to.addTransposeNeighbor(this.fromIndex);
     }
 }
 
