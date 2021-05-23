@@ -61,4 +61,6 @@ driveService.getDrivesDataForSpecificRoute = (routeID, carTypeId) =>
     .then(drives => drives.filter(drive => drive.carTypeId === carTypeId))
     .then(drives => extractData(drives, routeID));
 
+driveService.getDrivesFromCatType = (carType) => driveModel.find({carType});
+
 module.exports = driveService;
