@@ -18,6 +18,7 @@ router
     .all(validateIdParamMiddleware)
     .post(upload.single('driveDetails'), csvTranslator, driveController.addDriveMiddleware);
 
+
 router = genericModelRouter(carTypeController, router);
 
 module.exports = router;

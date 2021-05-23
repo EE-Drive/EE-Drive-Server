@@ -15,7 +15,7 @@ router
 
 router
     .route('/from-car-type/:id')
-    .post(driveController.getDrivesFromCatType);
+    .get(driveController.getDrivesFromCatType);
 
 router = genericModelRouter(driveController, router);
 

@@ -53,8 +53,8 @@ driveController.addRouteRawData = async (req, res) => {
 
 driveController.getDrivesFromCatType = async (req, res) => {
   try {
-    const items = await driveService.getDrivesFromCatType(req,params.id);
-    res.status(200).json({ items, message: SUCCESS_MESSAGES.POST(MODEL_NAME)});
+    const items = await driveService.getDrivesFromCatType(req?.params?.id);
+    res.status(200).json({ items});
 
   } catch (err) { 
     res.status(400).json({ message: err.message});

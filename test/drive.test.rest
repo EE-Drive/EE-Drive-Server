@@ -3,7 +3,7 @@
 ######################## Target All ########################
 
 ### get all drive routes
-GET http://localhost:8080/api/drive HTTP/1.1
+GET http://localhost:8080/api/drive/from-car-type/60851d924e84533e88a69083 HTTP/1.1
 
 ### add drive route
 
