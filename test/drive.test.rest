@@ -51,16 +51,16 @@ content-type: application/json
 ###################### Target Specific #####################
 
 ### delete specific car type
-DELETE  http://localHost:8080/api/drive/609e663ee6a6c23d10edb245 HTTP/1.1
+DELETE  http://eedrive.cs.colman.ac.il/api/drive/60aa620c878428b7d87e5b47 HTTP/1.1
 
 ###
-POST http://localHost:8080/api/car-type/drive-csv/60851d924e84533e88a69083
+POST http://eedrive.cs.colman.ac.il/api/car-type/drive-csv/60aa615870f5f89ebbce8919
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="driveDetails"; filename="driveDetails.csv"
 Content-Type: text/csv
 
-< ../DummyData/ashdod-to-rishon/drive1.csv
+< ../DummyData/ashdod-to-rishon/drive9.csv
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
