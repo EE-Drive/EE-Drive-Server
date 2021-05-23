@@ -40,11 +40,14 @@ modelRouteController.createModelForRote = async (req, res) => {
     const {routeID, carTypeID} = req.body;
     const current = await OptimalModelService.modelFromRouteID(routeID);
     if(current.length >= 1) return res.json(current);
+    console.log('step1');
     const data = await driveService.getDrivesDataForSpecificRoute(routeID, carTypeID);
     const model = await axios.post('http://localhost:8001/items/', {rawdata: data}).then(res => res.data);
     const clusters = divideToClusters(model);
-    console.log(clusters);
-    const vertexList = clusters.reduce((prev, curr) => [...prev, ...curr?.map(({vertex}) => vertex)]  ,[]);
+    console.log('step2');
+    const vertexList = clusters.reduce((prev, curr) => {
+        console.log(curr); return [...prev, ...curr.map(({vertex}) => vertex)]}  ,[]);
+    console.log(vertexList);
     const edgeList = [];
     for(let i=0; i < clusters.length - 1; i++)
         clusters[i].forEach(({vertex:v1, fuelCon:f1}) => 
@@ -54,7 +57,7 @@ modelRouteController.createModelForRote = async (req, res) => {
     const target = new Vertex(vertexList.length,0, 0, 0);
     vertexList.push(target);
     clusters[clusters.length - 1].forEach(({vertex:v1, fuelCon:f1}) => edgeList.push(new Edge(v1, target, f1)));
-    
+    console.log('step3');
     const graph = new Graph(vertexList, edgeList);
     graph.dikstra(target, true);
 
@@ -65,6 +68,7 @@ modelRouteController.createModelForRote = async (req, res) => {
         vertices: graph.vertexList,
         edges: graph.edgeList
     })
+    console.log('step4');
     
     res.json(savedItem);
 };
