@@ -39,11 +39,12 @@ const divideToClusters = model => model.reduce((prev, current, index) => {
 modelRouteController.createModelForRote = async (req, res) => {
     const {routeID, carTypeID} = req.body;
     const current = await OptimalModelService.modelFromRouteID(routeID);
-    if(current) return res.json(current);
+    if(current.length >= 1) return res.json(current);
     const data = await driveService.getDrivesDataForSpecificRoute(routeID, carTypeID);
     const model = await axios.post('http://localhost:8001/items/', {rawdata: data}).then(res => res.data);
     const clusters = divideToClusters(model);
-    const vertexList = clusters.reduce((prev, current) => [...prev, ...current.map(({vertex}) => vertex)]  ,[]);
+    console.log(clusters);
+    const vertexList = clusters.reduce((prev, curr) => [...prev, ...curr?.map(({vertex}) => vertex)]  ,[]);
     const edgeList = [];
     for(let i=0; i < clusters.length - 1; i++)
         clusters[i].forEach(({vertex:v1, fuelCon:f1}) => 
