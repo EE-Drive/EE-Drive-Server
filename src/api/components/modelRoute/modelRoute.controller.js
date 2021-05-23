@@ -46,7 +46,7 @@ modelRouteController.createModelForRote = async (req, res) => {
     const clusters = divideToClusters(model);
     console.log('step2');
     const vertexList = clusters.reduce((prev, curr) => {
-        console.log(curr); return [...prev, ...curr.map(({vertex}) => vertex)]}  ,[]);
+        console.log(Array.isArray(curr)); return [...prev, ...curr.map(({vertex}) => vertex)]}  ,[]);
     console.log(vertexList);
     const edgeList = [];
     for(let i=0; i < clusters.length - 1; i++)
