@@ -33,7 +33,7 @@ const divideToClusters = model => model.reduce((prev, current, index) => {
         res[label] = [];
 
     res[current.cluster_lable].push({ fuelCon, vertex: new Vertex(index, lat, long, speed)});
-    return res;
+    return res.filter(item => item);
 }, []);
 
 modelRouteController.createModelForRote = async (req, res) => {
@@ -46,7 +46,6 @@ modelRouteController.createModelForRote = async (req, res) => {
     const clusters = divideToClusters(model);
     console.log('step2');
     const vertexList = clusters.reduce((prev, curr) => curr ? [...prev, ...curr.map(({vertex}) => vertex)] : prev ,[]);
-    console.log(vertexList);
     const edgeList = [];
     for(let i=0; i < clusters.length - 1; i++)
         clusters[i].forEach(({vertex:v1, fuelCon:f1}) => 
