@@ -45,8 +45,7 @@ modelRouteController.createModelForRote = async (req, res) => {
     const model = await axios.post('http://localhost:8001/items/', {rawdata: data}).then(res => res.data);
     const clusters = divideToClusters(model);
     console.log('step2');
-    const vertexList = clusters.reduce((prev, curr) => {
-        console.log(Array.isArray(curr)); return [...prev, ...curr.map(({vertex}) => vertex)]}  ,[]);
+    const vertexList = clusters.reduce((prev, curr) => curr ? [...prev, ...curr.map(({vertex}) => vertex)] : prev ,[]);
     console.log(vertexList);
     const edgeList = [];
     for(let i=0; i < clusters.length - 1; i++)
