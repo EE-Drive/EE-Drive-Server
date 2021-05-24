@@ -32,8 +32,8 @@ const divideToClusters = model => model.reduce((prev, current, index) => {
         res[label] = [];
 
     res[label].push({ fuelCon, vertex: new Vertex(index, lat, long, speed)});
-    console.log(label);
-    return res;
+    console.log(res.filter(item => item !== undefined));
+    return res.filter(item => item !== undefined);
 }, []);
 
 modelRouteController.createModelForRote = async (req, res) => {
