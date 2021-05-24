@@ -32,6 +32,7 @@ const divideToClusters = model => model.reduce((prev, current, index) => {
         res[label] = [];
 
     res[label].push({ fuelCon, vertex: new Vertex(index, lat, long, speed)});
+    console.log(res);
     return res;
 }, []);
 
