@@ -45,7 +45,7 @@ class Graph {
     _relax(vertex, neighbor, weight) {
         if(neighbor.currentWeight  <= vertex.currentWeight + weight) return;
         neighbor.currentWeight = vertex.currentWeight + weight;
-        neighbor.father = vertex.index;
+        neighbor.fatherIndex = vertex.index;
     }
 }
 

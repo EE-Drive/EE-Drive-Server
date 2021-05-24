@@ -21,12 +21,12 @@ content-type: application/json
 ### get specific model route
 GET http://localHost:8080/api/model-route/6084407a73789f47442cbf5f HTTP/1.1
 
-### get specific model route
+### get specific model route 6084541743556de51e111e0a
 POST http://eedrive.cs.colman.ac.il/api/model-route/createModel HTTP/1.1
 content-type: application/json
 
 {
-    "routeID": "60844d9843556de51e111dd6",
+    "routeID": "6084541743556de51e111e0a",
     "carTypeID":"60aa615870f5f89ebbce8919"
 }
 
