@@ -30,6 +30,7 @@ driveService.addRouteRawData = (driveId, routeRawData) =>
 
 const avg = arr => {
   if(!Array.isArray(arr)) return arr;
+  else if(arr.length < 1) return 0;
   else return arr.reduce((prev, current) => prev + Number(current), 0) / arr.length;
 }
 
@@ -41,7 +42,7 @@ const extractData = (drives, routeID) => {
         driveRawData.rawData.forEach(routeRawData => {
           const fuelCon = routeRawData?.fuelCon ?? routeRawData?.fuelCons;
           const speed = routeRawData?.speed ?? routeRawData?.speeds;
-          data.push({...routeRawData, fuelCon: Number(avg(fuelCon)) ?? 0 ,speed: Number(avg(speed)) ?? 0})
+          data.push({...routeRawData, fuelCon: Number(avg(fuelCon)),speed: Number(avg(speed)) ?? 0})
         })
       })
   });
