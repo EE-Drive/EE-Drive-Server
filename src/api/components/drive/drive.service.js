@@ -41,7 +41,7 @@ const extractData = (drives, routeID) => {
         driveRawData.rawData.forEach(routeRawData => {
           const fuelCon = routeRawData?.fuelCon ?? routeRawData?.fuelCons;
           const speed = routeRawData?.speed ?? routeRawData?.speeds;
-          data.push({...routeRawData, fuelCon: Number(avg(fuelCon)) ,speed: Number(avg(speed))})
+          data.push({...routeRawData, fuelCon: Number(avg(fuelCon)) ?? 0 ,speed: Number(avg(speed)) ?? 0})
         })
       })
   });
