@@ -1,12 +1,4 @@
 
-# Do not run this test until the testing DB is set.
-######################## Target All ########################
-
-### get all drive routes
-GET http://localhost:8080/api/drive/from-car-type/60851d924e84533e88a69083 HTTP/1.1
-
-### add drive route
-
 POST http://eedrive.cs.colman.ac.il/api/drive/ HTTP/1.1
 content-type: application/json
 
@@ -21,46 +13,5 @@ content-type: application/json
       "lat":"31.806492808102334",
       "long":"34.693973722527836"
     },
-    {
-      "lat":"31.826502750899788",
-      "long":"34.69955733679958",
-      "fuelCons":[3,4,5,6,7,8,9,9],
-      "speeds":[3,4,5,6,7,8,9,9]
-    }, 
-    {
-      "lat":"31.87275108620717",
-      "long":"34.71805355436277",
-      "fuelCons":[1,4,5,6,7,8,9,9],
-      "speeds":[1,4,5,6,7,8,9,9]
-    },
-    {
-      "lat":"31.93939241066041",
-      "long":"34.74168621430044",
-      "fuelCons":[3,4,5,6,7,8,9,9],
-      "speeds":[3,4,5,6,7,8,9,9]
-    },
-    {
-      "lat":"1",
-      "long":"2",
-      "fuelCons":[3,4,5,6,7,8,9,9],
-      "speeds":[3,4,5,6,7,8,9,9]
-    }
     ]
 }
-
-###################### Target Specific #####################
-
-### delete specific car type
-DELETE  http://eedrive.cs.colman.ac.il/api/drive/60aa640a878428b7d87e5b54 HTTP/1.1
-
-###
-POST http://eedrive.cs.colman.ac.il/api/car-type/drive-csv/60aa615870f5f89ebbce8919
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="driveDetails"; filename="driveDetails.csv"
-Content-Type: text/csv
-
-< ../../DummyData/ashdod-to-rishon/drive1.csv
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-

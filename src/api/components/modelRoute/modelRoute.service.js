@@ -2,6 +2,7 @@
 const GenericModelService = require('../../../services/genericModelService.util');
 const ModelRouteModel = require('./modelRoute.model');
 const modelRouteService = GenericModelService(ModelRouteModel);
+const OptimalModelService = require('../optimalModel/optimalModel.service');
 
 /**
  * Used to add a model route to the DB.
@@ -13,7 +14,10 @@ const modelRouteService = GenericModelService(ModelRouteModel);
 modelRouteService.addItem = (newItem) => 
     new ModelRouteModel(newItem).save();
 
-module.exports = modelRouteService;
+modelRouteService.getModel = async ({lat, long}) => {
+    const routeId = await module.exports.findRouteId(lat, long);
+    return OptimalModelService.modelFromRouteID(routeId);
+};
 
 /**
  * Used to check if a given point represented with the
@@ -82,3 +86,5 @@ const buildRectangle = (sPoint, ePoint) => {
         
     return {tL:{lat:sLat, long:eLong}, tR:ePoint, bL:sPoint, bR:{lat:eLat, long:sLong}};
 };
+
+module.exports = modelRouteService;

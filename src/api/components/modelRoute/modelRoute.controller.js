@@ -77,6 +77,11 @@ modelRouteController.createModelForRote = async (req, res) => {
     res.json(savedItem);
 };
 
+modelRouteController.getModel = async (req, res) => {
+    const model = await modelRouteService.getModel(req.body);
+    res.json({model});
+};
+
 module.exports = modelRouteController;
 
 
