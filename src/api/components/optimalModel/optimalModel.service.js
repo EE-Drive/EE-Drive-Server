@@ -4,6 +4,6 @@ const OptimalModelModel = require('./optimalModel.model');
 
 const optimalModelService = GenericModelService(OptimalModelModel);
 
-optimalModelService.modelFromRouteID = routeID => OptimalModelModel.find({routeID});
+optimalModelService.modelFromRouteID = (routeID, carTypeID) => OptimalModelModel.find({routeID, carTypeID});
 
 module.exports = optimalModelService;

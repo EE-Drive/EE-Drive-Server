@@ -14,10 +14,12 @@ const OptimalModelService = require('../optimalModel/optimalModel.service');
 modelRouteService.addItem = (newItem) => 
     new ModelRouteModel(newItem).save();
 
-modelRouteService.getModel = async ({lat, long}) => {
+modelRouteService.getModel = async ({lat, long, carTypeID}) => {
     const routeId = await module.exports.findRouteId(lat, long);
-    return OptimalModelService.modelFromRouteID(routeId);
+    return OptimalModelService.modelFromRouteID(routeId, carTypeID);
 };
+
+module.exports = modelRouteService;
 
 /**
  * Used to check if a given point represented with the
@@ -67,24 +69,3 @@ module.exports.findRouteId = async (lat, long) => {
         
     return null;
 };
-
-// Build rectangle from a given starting point and ending point
-const buildRectangle = (sPoint, ePoint) => {
-    const {lat:sLat, long:sLong} = sPoint;
-    const {lat:eLat, long:eLong} = ePoint;
-    const latRes = sLat - eLat;
-    const longRes = sLong - eLong;
-
-    if(latRes > 0){ 
-        if(longRes > 0)
-            return {tL:{lat:eLat, long:sLong}, tR:sPoint, bL:ePoint, bR:{lat:sLat, long:eLong}};
-        
-        return {tL:ePoint, tR:{lat:sLat, long:eLong}, bL:{lat:eLat, long:sLong}, bR:sPoint};
-    }
-    if(longRes > 0)
-        return {tL:sPoint, tR:{lat:eLat, long:sLong}, bL:{lat:sLat, long:eLong}, bR:ePoint};
-        
-    return {tL:{lat:sLat, long:eLong}, tR:ePoint, bL:sPoint, bR:{lat:eLat, long:sLong}};
-};
-
-module.exports = modelRouteService;
