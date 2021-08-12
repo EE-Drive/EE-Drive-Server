@@ -12,7 +12,16 @@ router.use(ROUTES.DRIVE_ROUTE, driveRoute);
 router.use(ROUTES.MODEL_ROUTE_ROUTE, modelRouteRoute);
 router.use(ROUTES.OPTIMAL_MODEL_ROUTE, optimalModelRoute);
 
-router.get('/raw-data', (req, res) => rawDataModel.find().then(data => res.json(data)));
+router.get('/raw-data', async (req, res) => {
+    try {
+        const data = await rawDataModel.find();
+        console.log(data);
+        res.json(data);
+    } catch {
+        res.json({message: 'oh no'});
+    }
+    
+});
 
 module.exports = router;
 
