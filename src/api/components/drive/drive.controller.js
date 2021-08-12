@@ -7,7 +7,7 @@ const Logger = require('../../../config/logger.util');
 
 const MODEL_NAME = 'Drive';
 const mustProperties = ['carTypeId', 'driveRawData', 'driverAssist'];
-const allowedPropertiesToUpdate = ['driveRawData'];
+const allowedPropertiesToUpdate = ['driveRawData', 'driverAssist'];
 const driveController = GenericModelController(MODEL_NAME, driveService, mustProperties, allowedPropertiesToUpdate); 
 
 /**
