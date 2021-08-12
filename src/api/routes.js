@@ -22,6 +22,15 @@ router.get('/raw-data', async (req, res) => {
     
 });
 
+router.delete('/raw-data', async (req, res) => {
+    try {
+        const data = await rawDataModel.deleteMany();;
+        res.json(data);
+    } catch {
+        res.json({message: 'oh no'});
+    } 
+});
+
 router.delete('/raw-data/:id', async (req, res) => {
     try {
         const data = await rawDataModel.findByIdAndDelete(req.params.id);
