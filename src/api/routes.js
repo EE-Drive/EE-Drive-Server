@@ -15,7 +15,16 @@ router.use(ROUTES.OPTIMAL_MODEL_ROUTE, optimalModelRoute);
 router.get('/raw-data', async (req, res) => {
     try {
         const data = await rawDataModel.find();
-        console.log(data);
+        res.json(data);
+    } catch {
+        res.json({message: 'oh no'});
+    }
+    
+});
+
+router.delete('/raw-data/:id', async (req, res) => {
+    try {
+        const data = await Model.findByIdAndDelete(req.params.id);
         res.json(data);
     } catch {
         res.json({message: 'oh no'});
