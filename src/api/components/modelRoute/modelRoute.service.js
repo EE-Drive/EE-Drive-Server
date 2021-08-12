@@ -50,7 +50,6 @@ module.exports.isPointInRectangle = ({bL: {lat: Ax, long: Ay}, bR: {lat: Dx, lon
     return (APDSum + DPCSum + CPBSum + PBASum) <= rectangleSum;
 };
 
-let modelRoutes;
 /**
  * Used to find the route id assigned for the current lat and long.
  * 
@@ -59,7 +58,7 @@ let modelRoutes;
  */
 module.exports.findRouteId = async (lat, long) => {
     if(!lat || !long || isNaN(lat) || isNaN(long)) return null;
-    if(!modelRoutes) modelRoutes = await modelRouteService.getItems(); 
+    modelRoutes = await modelRouteService.getItems(); 
     
     for(const route of modelRoutes){
         const {bL, bR, tL, tR} = route;

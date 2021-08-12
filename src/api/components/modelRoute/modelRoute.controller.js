@@ -39,7 +39,6 @@ modelRouteController.createModelForRote = async (req, res) => {
     const {routeID, carTypeID} = req.body;
     const current = await OptimalModelService.modelFromRouteID(routeID);
     const data = await driveService.getDrivesDataForSpecificRoute(routeID, carTypeID);
-    console.log(data);
     const model = await axios.post('http://localhost:8001/items/', {rawdata: data}).then(res => res.data);
     const clusters = divideToClusters(model);
     const vertexList = clusters.reduce((prev, curr) => curr ? [...prev, ...curr.map(({vertex}) => vertex)] : prev ,[]);
