@@ -24,12 +24,11 @@ router.get('/raw-data', async (req, res) => {
 
 router.delete('/raw-data/:id', async (req, res) => {
     try {
-        const data = await Model.findByIdAndDelete(req.params.id);
+        const data = await rawDataModel.findByIdAndDelete(req.params.id);
         res.json(data);
     } catch {
         res.json({message: 'oh no'});
-    }
-    
+    } 
 });
 
 module.exports = router;
